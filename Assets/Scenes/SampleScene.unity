@@ -1017,7 +1017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e807305121534406d831d01a84bbf693, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 1
+  MoveSpeed: 3
 --- !u!114 &1175667011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1029,10 +1029,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8011adc3d3c044beaac534916f7dc9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JumpForce: 15
+  isJumping: 0
+  JumpForce: 70
   JumpCollider: {fileID: 1379456302}
   GroundLayer: Ground
   jumpButtonName: Jump
+  jumpHoldTime: 0
+  HoldCount: 0
+  LongJumpTime: 0.05
 --- !u!114 &1175667012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1046,7 +1050,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsOnTheGround: 0
   Weight: 1
-  GravityScale: 1
+  GravityScale: 5
   GroundLayer: Ground
   GroundCheckCollider: {fileID: 1379456302}
 --- !u!50 &1175667013
@@ -1067,7 +1071,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!1 &1282830176
 GameObject:
