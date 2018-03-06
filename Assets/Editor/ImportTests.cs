@@ -2,13 +2,13 @@ using NUnit.Framework;
 using Helpers;
 using System;
 using System.IO;
+using UnityEngine;
 
 namespace AssemblyCSharpEditor.Assets.Editor
 {
     [TestFixture()]
     public class ImportTests
     {
-
         [Test]
         public void ThrowsIfRunPartImportPathNotFound()
         {
@@ -19,25 +19,29 @@ namespace AssemblyCSharpEditor.Assets.Editor
             });
         }
 
-        //Test for System.UnauthorizedAccessException
-        [Test]
-        public void ThrowsIfUnauthorizedPath()
-        {
-            Assert.Throws<UnauthorizedAccessException>(() =>
-            {
-                var jsonPath = @"/Users/terrancesmith/2dTools/Assets/Editor/TestJson";
-                var part = ImportHelper.ImportFromJson<RunPart>(jsonPath);
-            });
-        }
-
         [Test]
         public void ReturnRunPartFromJson()
         {
-            //fails
-            var jsonPath = @"/Users/terrancesmith/2dTools/Assets/Editor/TestJson";
-            var part = ImportHelper.ImportFromJson<RunPart>(jsonPath);
+            var fileName = "RunPart.json";
+            var currentPath = Path.Combine(Environment.CurrentDirectory, "Assets/Editor/TestJson", fileName);
+            Debug.Log("Path =" + currentPath + " Exists = " + File.Exists(currentPath));
+
+            var part = ImportHelper.ImportFromJson<RunPart>(currentPath);
             Assert.IsNotNull(part);
+
         }
 
+        [Test]
+        public void ThrowsOnMissingFieldFromRunPart()
+        {
+            Assert.Throws<Exception>(() =>
+            {
+                var fileName = "MalformedRunPart.json";
+                var currentPath = Path.Combine(Environment.CurrentDirectory, "Assets/Editor/TestJson", fileName);
+                Debug.Log("Path = " + currentPath + " Exists = " + File.Exists(currentPath));
+                var part = ImportHelper.ImportFromJson<RunPart>(currentPath);
+            });
+
+        }
     }
 }

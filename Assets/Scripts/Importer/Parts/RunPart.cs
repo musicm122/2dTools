@@ -7,19 +7,20 @@ using System;
 [Serializable]
 public class RunPart : BasePart
 {
-
+    public RunPart()
+    {
+        FileName = "RunPart";
+    }
     public bool IsConstant;
 
     public float MaxSpeed;
 
-    public new string FileName { private set; get; } = "RunPart";
-
-    public override void ExportToJson()
+    public void ExportToJson()
     {
         ExportHelper.ExportToJson<RunPart>(this.ExportConfig.ExportPath, FileName, this);
     }
 
-    public override void ImportFromJson(string filePath)
+    public void ImportFromJson(string filePath)
     {
         using (StreamReader reader = new StreamReader(filePath))
         {
