@@ -10,9 +10,7 @@ namespace Helpers
         {
             using (StreamReader reader = new StreamReader(filePath))
             {
-
                 var rawJson = reader.ReadToEnd();
-
                 return JsonUtility.FromJson<T>(rawJson);
             }
         }

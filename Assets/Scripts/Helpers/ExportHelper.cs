@@ -8,7 +8,7 @@ namespace Helpers
 {
     public static class ExportHelper
     {
-        public static Tuple<bool, string> ExportToJson<T>(string path, string fileName, T part) where T : BasePart
+        public static Tuple<bool, string> ExportToJson<T>(string path, string fileName, T part) where T : IExportable
         {
             var filePath = path + "/" + fileName + ".json";
             try
@@ -22,5 +22,6 @@ namespace Helpers
                 return Tuple.Create(false, $"File failed to export : {filePath} : Error : {ex.Message}");
             }
         }
+
     }
 }

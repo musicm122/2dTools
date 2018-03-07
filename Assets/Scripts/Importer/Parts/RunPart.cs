@@ -1,36 +1,19 @@
-using UnityEngine;
+﻿using System;
 using Scripts.Importer;
-using System.IO;
-using Helpers;
-using System;
+using UnityEngine;
 
 [Serializable]
-public class RunPart : BasePart
+public struct RunPart : IExportable
 {
-    public RunPart()
-    {
-        FileName = "RunPart";
-    }
-    public bool IsConstant;
 
+    [SerializeField]
+    public float Gravity;
+
+    [SerializeField]
     public float MaxSpeed;
 
-    public void ExportToJson()
-    {
-        ExportHelper.ExportToJson<RunPart>(this.ExportConfig.ExportPath, FileName, this);
-    }
 
-    public void ImportFromJson(string filePath)
-    {
-        using (StreamReader reader = new StreamReader(filePath))
-        {
-            var rawJson = reader.ReadToEnd();
-            RunPart importedRunPart = (RunPart)JsonUtility.FromJson<RunPart>(rawJson);
+    ExportConfiguration IExportable.ExportConfig { get; set; }
 
-            this.MaxSpeed = importedRunPart.MaxSpeed;
-            this.Gravity = importedRunPart.Gravity;
-
-        }
-    }
-
+    public string GetFileName() => "RunPart";
 }

@@ -9,11 +9,13 @@ public class Movable : MonoBehaviour, IMovable
     const int StillPosition = 0;
 
     [SerializeField]
-    RunPart RunDatata;
+    public RunPart RunData;
+
+
 
     private void FixedUpdate()
     {
-        Move(this.transform, GetMoveDirection(), RunDatata.MaxSpeed);
+        Move(this.transform, GetMoveDirection(), RunData.MaxSpeed);
     }
 
     public MoveDirection2d GetMoveDirection()
