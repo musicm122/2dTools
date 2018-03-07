@@ -1,6 +1,5 @@
 ﻿{
     "MaxSpeed": 1,
     "Gravity": 9.8,
-    "FileName": "RunPart",
-    "IsConstant": true
+    "FileName": "RunPart"    
 }

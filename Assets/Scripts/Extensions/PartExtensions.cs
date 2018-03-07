@@ -3,6 +3,7 @@ using System.Collections;
 using Scripts.Importer;
 using System.IO;
 using Helpers;
+using Constants;
 
 public static class PartExtensions
 {
@@ -17,7 +18,8 @@ public static class PartExtensions
 
     public static bool ExportToJson<T>(this T part, string filePath) where T : IExportable
     {
-        var result = ExportHelper.ExportToJson<T>(part.ExportConfig.ExportPath, part.GetFileName(), part);
+        var defaultExportPath = DefaultConfig.GeDefaulttExportDir();
+        var result = ExportHelper.ExportToJson<T>(defaultExportPath, part.GetFileName(), part);
         if (!result.Item1)
         {
             Debug.LogError(result.Item2);

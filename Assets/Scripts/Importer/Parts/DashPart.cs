@@ -6,11 +6,12 @@ using System.IO;
 
 public class DashPart : IExportable
 {
-    public float Gravity { get; set; }
+
+    [SerializeField]
+    public float Gravity;
 
     ExportConfiguration IExportable.ExportConfig { get; set; }
 
     public string GetFileName() => "DashPart";
-
 
 }

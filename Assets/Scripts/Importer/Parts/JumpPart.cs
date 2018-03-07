@@ -6,9 +6,9 @@ using Helpers;
 
 public struct JumpPart : IExportable
 {
-    public ExportConfiguration ExportConfig { get; set; }
 
-    public float Gravity { get; set; }
+    [SerializeField]
+    public float Gravity;
 
     ExportConfiguration IExportable.ExportConfig { get; set; }
 

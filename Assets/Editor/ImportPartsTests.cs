@@ -9,6 +9,26 @@ namespace AssemblyCSharpEditor.Assets.Editor
     [TestFixture()]
     public class ImportPartsTests
     {
+        private string GetPartDir(string fileName)
+        {
+            return Path.Combine(Environment.CurrentDirectory, "Assets/Editor/TestJson", fileName);
+        }
+
+        private string GetRunPartPath()
+        {
+            return GetPartDir("RunPart.json");
+        }
+
+        private string GetDashPartPath()
+        {
+            return GetPartDir("DashPart.json");
+        }
+
+        private string GetJumpPartPath()
+        {
+            return GetPartDir("JumpPart.json");
+        }
+
         [Test]
         public void ThrowsIfRunPartImportPathNotFound()
         {
@@ -22,15 +42,51 @@ namespace AssemblyCSharpEditor.Assets.Editor
         [Test]
         public void ReturnRunPartFromJson()
         {
-            var fileName = "RunPart.json";
-            var currentPath = Path.Combine(Environment.CurrentDirectory, "Assets/Editor/TestJson", fileName);
-            Debug.Log("Path =" + currentPath + " Exists = " + File.Exists(currentPath));
-
+            var currentPath = GetRunPartPath();
             var part = ImportHelper.ImportFromJson<RunPart>(currentPath);
             Assert.IsNotNull(part);
-
         }
+
+        [Test]
+        public void ShouldPopulateRunPartWithValuesFromJson()
+        {
+            var currentPath = GetRunPartPath();
+            var part = ImportHelper.ImportFromJson<RunPart>(currentPath);
+            Assert.IsNotNull(part.MaxSpeed, "MaxSpeed Should Be Populated");
+            Assert.IsNotNull(part.Gravity, "Gravity Should Be Populated");
+        }
+
+        [Test]
+        public void ReturnJumpPartFromJson()
+        {
+            var currentPath = GetJumpPartPath();
+            var part = ImportHelper.ImportFromJson<RunPart>(currentPath);
+            Assert.IsNotNull(part);
+        }
+
+        [Test]
+        public void ShouldPopulateJumpPartWithValuesFromJson()
+        {
+            var currentPath = GetJumpPartPath();
+            var part = ImportHelper.ImportFromJson<JumpPart>(currentPath);
+            Assert.IsNotNull(part.Gravity, "Gravity Should Be Populated");
+        }
+
+        [Test]
+        public void ReturnDashPartFromJson()
+        {
+            var currentPath = GetDashPartPath();
+            var part = ImportHelper.ImportFromJson<RunPart>(currentPath);
+            Assert.IsNotNull(part);
+        }
+
+        [Test]
+        public void ShouldPopulateDashPartWithValuesFromJson()
+        {
+            var currentPath = GetJumpPartPath();
+            var part = ImportHelper.ImportFromJson<DashPart>(currentPath);
+            Assert.IsNotNull(part.Gravity, "Gravity Should Be Populated");
+        }
+
     }
-
-
 }
