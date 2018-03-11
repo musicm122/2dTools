@@ -12,8 +12,6 @@ namespace Constants
 
     public static class DefaultConfig
     {
-
-
         public static string GetPartDir(string fileName)
         {
             return Path.Combine(Environment.CurrentDirectory, "Assets/Json", fileName + ".json");

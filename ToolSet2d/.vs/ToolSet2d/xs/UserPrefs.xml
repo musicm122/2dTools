@@ -1,0 +1,19 @@
+﻿<Properties StartupConfiguration="{899B5B73-4380-46E5-7750-64B698D488AA}|Unit Tests">
+  <MonoDevelop.Ide.Workbench ActiveDocument="../Assets/Editor/PartEditorScript.cs">
+    <Files>
+      <File FileName="../Assets/Editor/PartEditorScript.cs" Line="39" Column="49" />
+      <File FileName="../Assets/Scripts/Constants/ApplicationConstants.cs" Line="20" Column="49" />
+      <File FileName="../Assets/Scripts/Helpers/ImportHelper.cs" Line="7" Column="25" />
+      <File FileName="../Assets/Scripts/Importer/ExportConfiguration.cs" Line="4" Column="14" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="../../../../.vs/2dTools/xs/Assets/Scripts/PlayerController.cs" line="53" offsetX="406" offsetY="832" expression="speed" liveUpdate="False" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp-Editor PreferredExecutionTarget="MonoDevelop.Default" />
+  <MultiItemStartupConfigurations />
+</Properties>

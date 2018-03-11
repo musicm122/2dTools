@@ -49,27 +49,6 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="mscorlib">
-      <HintPath>/Applications/Unity/Hub/Editor/2018.1.0b8/Unity.app/Contents/MonoBleedingEdge/lib/mono/4.6-api/mscorlib.dll</HintPath>
-    </Reference>
-    <Reference Include="System">
-      <HintPath>/Applications/Unity/Hub/Editor/2018.1.0b8/Unity.app/Contents/MonoBleedingEdge/lib/mono/4.6-api/System.dll</HintPath>
-    </Reference>
-    <Reference Include="System.XML">
-      <HintPath>/Applications/Unity/Hub/Editor/2018.1.0b8/Unity.app/Contents/MonoBleedingEdge/lib/mono/4.6-api/System.XML.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Core">
-      <HintPath>/Applications/Unity/Hub/Editor/2018.1.0b8/Unity.app/Contents/MonoBleedingEdge/lib/mono/4.6-api/System.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.CSharp">
-      <HintPath>/Applications/Unity/Hub/Editor/2018.1.0b8/Unity.app/Contents/MonoBleedingEdge/lib/mono/4.6-api/Microsoft.CSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.Serialization">
-      <HintPath>/Applications/Unity/Hub/Editor/2018.1.0b8/Unity.app/Contents/MonoBleedingEdge/lib/mono/4.6-api/System.Runtime.Serialization.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Xml.Linq">
-      <HintPath>/Applications/Unity/Hub/Editor/2018.1.0b8/Unity.app/Contents/MonoBleedingEdge/lib/mono/4.6-api/System.Xml.Linq.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine">
       <HintPath>/Applications/Unity/Hub/Editor/2018.1.0b8/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

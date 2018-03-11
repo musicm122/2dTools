@@ -4,26 +4,24 @@ using Scripts.Importer;
 using System.IO;
 using Helpers;
 using Constants;
+using System;
 
 public static class PartExtensions
 {
-    public static T ImportFromJson<T>(this IExportable part, string filePath) where T : IExportable
+    /*
+    public static Tuple<bool, string> ExportToJson<T>(this T part)
     {
-        using (StreamReader reader = new StreamReader(filePath))
+        var filePath = part.ExportConfig.GetExportPath();
+        try
         {
-            var rawJson = reader.ReadToEnd();
-            return JsonUtility.FromJson<T>(rawJson);
+            var json = JsonUtility.ToJson(part);
+            File.AppendAllText(filePath, json);
+            return Tuple.Create(true, $"File exported successfully :{filePath}");
+        }
+        catch (Exception ex)
+        {
+            return Tuple.Create(false, $"File failed to export : {filePath} : Error : {ex.Message}");
         }
     }
-
-    public static bool ExportToJson<T>(this T part, string filePath) where T : IExportable
-    {
-        var defaultExportPath = DefaultConfig.GeDefaulttExportDir();
-        var result = ExportHelper.ExportToJson<T>(defaultExportPath, part.GetFileName(), part);
-        if (!result.Item1)
-        {
-            Debug.LogError(result.Item2);
-        }
-        return result.Item1;
-    }
+    */
 }
