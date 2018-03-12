@@ -1,35 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Enums;
+using Scripts.Importer.Parts;
 using UnityEngine;
 
 
 public class Movable : MonoBehaviour, IMovable
 {
+    const int StillPosition = 0;
+
     [SerializeField]
-    float MoveSpeed = 2.0f;
+    public RunPart RunData;
+
+
 
     private void FixedUpdate()
     {
-        MoveCheck();
-    }
-
-    public void MoveCheck()
-    {
-        Move(this.transform, GetMoveDirection(), MoveSpeed);
+        Move(this.transform, GetMoveDirection(), RunData.MaxSpeed);
     }
 
     public MoveDirection2d GetMoveDirection()
     {
         var inputVal = Input.GetAxis("Horizontal");
 
-        if (Mathf.Approximately(inputVal, 0))
+        if (Mathf.Approximately(inputVal, StillPosition))
         {
             return MoveDirection2d.None;
         }
         else
         {
-            return (inputVal > 0) ? MoveDirection2d.Right : MoveDirection2d.Left;
+            return (inputVal > StillPosition) ? MoveDirection2d.Right : MoveDirection2d.Left;
         }
     }
 
@@ -45,12 +45,12 @@ public class Movable : MonoBehaviour, IMovable
         }
     }
 
-    public void MoveLeft(Transform body, float speed)
+    void MoveLeft(Transform body, float speed)
     {
         body.Translate(Vector2.left * speed * Time.fixedDeltaTime);
     }
 
-    public void MoveRight(Transform body, float speed)
+    void MoveRight(Transform body, float speed)
     {
         body.Translate(Vector2.right * speed * Time.fixedDeltaTime);
     }

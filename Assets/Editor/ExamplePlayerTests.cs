@@ -7,7 +7,7 @@ using System.Collections;
 namespace AssemblyCSharpEditor.Assets.Editor
 {
     [TestFixture()]
-    public class PlayerTests
+    public class ExamplePlayerTests
     {
 
         [Test]
