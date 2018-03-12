@@ -1,4 +1,5 @@
-﻿namespace AssemblyCSharp.Assets.Scripts.PartValidation
+﻿using System;
+namespace AssemblyCSharp.Assets.Scripts.PartValidation
 {
     public struct RuleResult
     {
@@ -8,6 +9,7 @@
             this.Message = message;
             this.HasPassed = hasPassed;
         }
+
         public string TargetName;
         public string Message;
         public bool HasPassed;

@@ -5,9 +5,7 @@ namespace Scripts.Importer
 {
     public interface IExportable
     {
-        string GetFileName();
-
-        ExportConfiguration ExportConfig { get; set; }
-
+        Tuple<bool, string> ExportToJson();
+        Tuple<bool, string> ImportFromJson(string filePath);
     }
 }

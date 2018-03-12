@@ -1,8 +1,10 @@
-﻿namespace AssemblyCSharp.Assets.Scripts.PartValidation
+﻿using System;
+using Scripts.Importer.Parts;
+
+namespace AssemblyCSharp.Assets.Scripts.PartValidation
 {
     public abstract class BaseRule
     {
-        public abstract RuleResult EvaluateRule<T>();
-
+        public abstract RuleResult RunRule(object val);
     }
 }

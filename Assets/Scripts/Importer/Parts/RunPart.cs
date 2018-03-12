@@ -2,38 +2,40 @@
 using System.IO;
 using Scripts.Importer;
 using UnityEngine;
+using Helpers;
+using AssemblyCSharp.Assets.Scripts.Helpers;
+using SimpleJSON;
+using AssemblyCSharp.Assets.Scripts.PartValidation;
+using AssemblyCSharp.Assets.Scripts.Importer.PartFactory;
 
-[Serializable]
-[CreateAssetMenu(menuName = "Tools/2dTools/Create RunPart")]
-public class RunPart : ScriptableObject
+namespace Scripts.Importer.Parts
 {
-    [SerializeField]
-    public float MaxSpeed;
 
-    [SerializeField]
-    public float Gravity;
-
-    [SerializeField]
-    public ExportConfiguration ExportConfig;
-
-    public void Initialize(GameObject obj)
+    [Serializable]
+    [CreateAssetMenu(menuName = "Tools/2dTools/Create RunPart")]
+    public class RunPart : BasePart
     {
-        ScriptableObject asset = ScriptableObject.CreateInstance<RunPart>();
-    }
+        [Header("Max Run Speed", order = 0)]
+        [SerializeField]
+        public float MaxSpeed;
 
-    public Tuple<bool, string> ExportToJson()
-    {
-        var filePath = ExportConfig.GetRunPartExportPath();
-        try
+        public override BasePart CreateInstance()
         {
-            var json = JsonUtility.ToJson(this);
-            File.AppendAllText(filePath, json);
-            return Tuple.Create(true, $"File exported successfully :{filePath}");
+            var part = RunPartFactory.CreateRunPartInstance();
+            part.MaxSpeed = this.MaxSpeed;
+            part.Gravity = this.Gravity;
+            return part;
         }
-        catch (Exception ex)
+
+        public override void Load(JSONNode json)
         {
-            return Tuple.Create(false, $"File failed to export : {filePath} : Error : {ex.Message}");
+            this.MaxSpeed = json["MaxSpeed"].AsFloat;
+            this.Gravity = json["Gravity"].AsFloat;
+        }
+
+        public override RuleResultSummary Validate()
+        {
+            throw new NotImplementedException();
         }
     }
 }
-

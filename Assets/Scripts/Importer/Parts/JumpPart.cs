@@ -4,33 +4,32 @@ using Scripts.Importer;
 using System.IO;
 using Helpers;
 using System;
+using AssemblyCSharp.Assets.Scripts.PartValidation;
+using SimpleJSON;
 
-[Serializable]
-[CreateAssetMenu(menuName = "Tools/2dTools/Create JumpPart")]
-public class JumpPart : ScriptableObject
+namespace Scripts.Importer.Parts
 {
-    [SerializeField]
-    public float Gravity { get; set; }
-
-    public ExportConfiguration ExportConfig { get; set; }
-
-    public void Initialize(GameObject obj)
+    [Serializable]
+    [CreateAssetMenu(menuName = "Tools/2dTools/Create JumpPart")]
+    public class JumpPart : BasePart
     {
-        ScriptableObject asset = ScriptableObject.CreateInstance<JumpPart>();
-    }
+        [SerializeField]
+        public float JumpForce { get; set; }
 
-    public Tuple<bool, string> ExportToJson()
-    {
-        var filePath = ExportConfig.GetJumpPartExportPath();
-        try
+        public override BasePart CreateInstance()
         {
-            var json = JsonUtility.ToJson(this);
-            File.AppendAllText(filePath, json);
-            return Tuple.Create(true, $"File exported successfully :{filePath}");
+            return CreateInstance<JumpPart>();
         }
-        catch (Exception ex)
+
+        public override void Load(JSONNode json)
         {
-            return Tuple.Create(false, $"File failed to export : {filePath} : Error : {ex.Message}");
+            this.JumpForce = json["MaxDashSpeed"].AsFloat;
+            this.Gravity = json["Gravity"].AsFloat;
+        }
+
+        public override RuleResultSummary Validate()
+        {
+            throw new NotImplementedException();
         }
     }
 }

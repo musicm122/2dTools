@@ -5,6 +5,9 @@ using System.IO;
 using Helpers;
 using Constants;
 using System;
+using Scripts.Importer.Parts;
+using System.Linq;
+using System.Collections.Generic;
 
 public static class PartExtensions
 {

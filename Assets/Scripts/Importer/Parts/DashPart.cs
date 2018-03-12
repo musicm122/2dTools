@@ -1,40 +1,34 @@
 using UnityEngine;
 using System.Collections;
-using Scripts.Importer;
 using Helpers;
 using System.IO;
 using System;
+using AssemblyCSharp.Assets.Scripts.PartValidation;
+using SimpleJSON;
 
-[Serializable]
-[CreateAssetMenu(menuName = "Tools/2dTools/Create DashPart")]
-public class DashPart : ScriptableObject
+namespace Scripts.Importer.Parts
 {
-    [SerializeField]
-    public float MaxSpeed;
-
-    [SerializeField]
-    public float Gravity;
-
-    public ExportConfiguration ExportConfig;
-
-
-    public void Initialize(GameObject obj)
+    [Serializable]
+    [CreateAssetMenu(menuName = "Tools/2dTools/Create DashPart")]
+    public class DashPart : BasePart
     {
-        ScriptableObject asset = ScriptableObject.CreateInstance<DashPart>();
-    }
+        [SerializeField]
+        public float MaxDashSpeed;
 
-    public Tuple<bool, string> ExportToJson()
-    {
-        var filePath = ExportConfig.GetDashPartExportPath();
-        try
+        public override BasePart CreateInstance()
         {
-            var json = JsonUtility.ToJson(this);
-            File.AppendAllText(filePath, json);
-            return Tuple.Create(true, $"File exported successfully :{filePath}");
+            return CreateInstance<DashPart>();
         }
-        catch (Exception ex)
+
+        public override void Load(JSONNode json)
         {
-            return Tuple.Create(false, $"File failed to export : {filePath} : Error : {ex.Message}");
+            this.MaxDashSpeed = json["MaxDashSpeed"].AsFloat;
+            this.Gravity = json["Gravity"].AsFloat;
+        }
+
+        public override RuleResultSummary Validate()
+        {
+            throw new NotImplementedException();
         }
     }
 }

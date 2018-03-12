@@ -2,7 +2,8 @@ using NUnit.Framework;
 using Helpers;
 using System;
 using System.IO;
-using UnityEngine;
+using AssemblyCSharp.Assets.Scripts.Importer.PartFactory;
+using Scripts.Importer.Parts;
 
 namespace AssemblyCSharpEditor.Assets.Editor
 {
@@ -35,58 +36,29 @@ namespace AssemblyCSharpEditor.Assets.Editor
             Assert.Throws<FileNotFoundException>(() =>
             {
                 var path = @"\fake\path";
-                var part = ImportHelper.ImportFromJson<RunPart>(path);
+                var part = ImportHelper.ImportFromJson(path);
             });
         }
 
         [Test]
-        public void ReturnRunPartFromJson()
+        public void CreateRunPart()
         {
-            var currentPath = GetRunPartPath();
-            var part = ImportHelper.ImportFromJson<RunPart>(currentPath);
+            var part = RunPartFactory.CreateRunPartInstance();
+            Assert.IsInstanceOf<RunPart>(part);
             Assert.IsNotNull(part);
         }
 
         [Test]
-        public void ShouldPopulateRunPartWithValuesFromJson()
+        public void CreateRunPartFromJson()
         {
-            var currentPath = GetRunPartPath();
-            var part = ImportHelper.ImportFromJson<RunPart>(currentPath);
-            Assert.IsNotNull(part.MaxSpeed, "MaxSpeed Should Be Populated");
-            Assert.IsNotNull(part.Gravity, "Gravity Should Be Populated");
-        }
+            var expectedGravity = 9.8f;
+            var expectedMaxSpeed = 1f;
 
-        [Test]
-        public void ReturnJumpPartFromJson()
-        {
-            var currentPath = GetJumpPartPath();
-            var part = ImportHelper.ImportFromJson<RunPart>(currentPath);
-            Assert.IsNotNull(part);
-        }
+            var part = RunPartFactory.CreateRunPartWithGivenState(GetRunPartPath());
 
-        [Test]
-        public void ShouldPopulateJumpPartWithValuesFromJson()
-        {
-            var currentPath = GetJumpPartPath();
-            var part = ImportHelper.ImportFromJson<JumpPart>(currentPath);
-            Assert.IsNotNull(part.Gravity, "Gravity Should Be Populated");
-        }
+            Assert.AreEqual(expectedGravity, part.Gravity, "RunPart Gravity Should Match");
+            Assert.AreEqual(expectedMaxSpeed, part.MaxSpeed, "RunPart MaxSpeed Should Match");
 
-        [Test]
-        public void ReturnDashPartFromJson()
-        {
-            var currentPath = GetDashPartPath();
-            var part = ImportHelper.ImportFromJson<RunPart>(currentPath);
-            Assert.IsNotNull(part);
         }
-
-        [Test]
-        public void ShouldPopulateDashPartWithValuesFromJson()
-        {
-            var currentPath = GetJumpPartPath();
-            var part = ImportHelper.ImportFromJson<DashPart>(currentPath);
-            Assert.IsNotNull(part.Gravity, "Gravity Should Be Populated");
-        }
-
     }
 }

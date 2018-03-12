@@ -17,7 +17,7 @@ namespace Constants
             return Path.Combine(Environment.CurrentDirectory, "Assets/Json", fileName + ".json");
         }
 
-        public static string GeDefaulttExportDir()
+        public static string GetDefaultExportDir()
         {
             return Path.Combine(Environment.CurrentDirectory, "Assets/Json");
         }
