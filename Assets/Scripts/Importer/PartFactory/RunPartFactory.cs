@@ -1,6 +1,5 @@
 ﻿using System;
 using Scripts.Importer.Parts;
-using UnityEngine;
 using Helpers;
 using SimpleJSON;
 
@@ -10,7 +9,7 @@ namespace AssemblyCSharp.Assets.Scripts.Importer.PartFactory
     {
         public static RunPart CreateRunPartInstance()
         {
-            return ScriptableObject.CreateInstance<RunPart>();
+            return PartFactory.CreatePart<RunPart>();
         }
 
         public static RunPart CreateRunPartWithGivenState(string filePath)

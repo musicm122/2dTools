@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace AssemblyCSharp.Assets.Scripts.Base
 {
-    public abstract class EntityAction : MonoBehaviour
+    public abstract class EntityAction : MonoBehaviour, IEntityAction
     {
         public float ActionCooldown = 1.0f;
         public float ActionTime = 1.0f;

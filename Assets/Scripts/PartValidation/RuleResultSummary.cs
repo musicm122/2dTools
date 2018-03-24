@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace AssemblyCSharp.Assets.Scripts.PartValidation
 {
-    public struct RuleResultSummary
+    public struct RuleResultSummary : IRuleResultSummary
     {
         public RuleResultSummary(List<RuleResult> results)
         {

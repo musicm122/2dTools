@@ -283,6 +283,12 @@
     <Reference Include="UnityEditor.OSXStandalone.Extensions">
       <HintPath>/Applications/Unity/Hub/Editor/2018.1.0b8/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="NugetForUnity">
+      <HintPath>Assets/NuGet/Editor/NugetForUnity.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetZip">
+      <HintPath>Assets/NuGet/Editor/DotNetZip.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.Advertisements">
       <HintPath>/Users/terrancesmith/Library/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.3/UnityEngine.Advertisements.dll</HintPath>
     </Reference>

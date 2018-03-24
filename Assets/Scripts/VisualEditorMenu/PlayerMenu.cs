@@ -18,9 +18,14 @@ namespace AssemblyCSharp.Assets.Scripts.VisualEditorMenu
         [SerializeField]
         private Canvas Menu;
 
+        [SerializeField]
+        private GameState GameState;
+
         public void ResetPlayer()
         {
-            throw new NotImplementedException();
+            GameState.ResetPartState();
+            Debug.Log("Reset Player Initiated");
+            Time.timeScale = 1.0f;
         }
 
         public void ResetWorld()
@@ -38,11 +43,13 @@ namespace AssemblyCSharp.Assets.Scripts.VisualEditorMenu
         private void Start()
         {
             ResetStageButton.onClick.AddListener(ResetWorld);
+            ResetPlayerButton.onClick.AddListener(ResetPlayer);
         }
 
         private void OnDestroy()
         {
             ResetStageButton.onClick.RemoveListener(ResetWorld);
+            ResetPlayerButton.onClick.RemoveListener(ResetPlayer);
         }
     }
 }
