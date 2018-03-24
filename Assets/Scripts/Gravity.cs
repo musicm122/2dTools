@@ -4,7 +4,7 @@ using Helpers;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Collider2D))]
-public class Gravity : MonoBehaviour
+public class Gravity : MonoBehaviour, IGravity
 {
     [SerializeField]
     bool IsOnTheGround;

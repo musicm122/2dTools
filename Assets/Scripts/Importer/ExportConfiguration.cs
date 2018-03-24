@@ -3,7 +3,7 @@
 namespace Scripts.Importer
 {
     [CreateAssetMenu(menuName = "Tools/2dTools/Create ExportConfiguration")]
-    public class ExportConfiguration : ScriptableObject
+    public class ExportConfiguration : ScriptableObject, IExportConfiguration
     {
         public string GetJumpPartExportPath()
         {

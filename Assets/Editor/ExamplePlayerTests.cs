@@ -14,10 +14,7 @@ namespace AssemblyCSharpEditor.Assets.Editor
         public void CanCreatePlayerObject()
         {
             // Use the Assert class to test conditions.
-
         }
-
-
 
         // A UnityTest behaves like a coroutine in PlayMode
         // and allows you to yield null to skip a frame in EditMode

@@ -1,9 +1,13 @@
 using UnityEngine;
 using System.Collections;
 using Helpers;
+using Scripts.Importer.Parts;
 
-public class Jumpable : MonoBehaviour
+public class Jumpable : MonoBehaviour, IJumpable
 {
+    [SerializeField]
+    public JumpPart jumpData;
+
     public enum JumpSize
     {
         Short,
@@ -13,8 +17,8 @@ public class Jumpable : MonoBehaviour
 
     public bool isJumping = false;
 
-    [SerializeField]
-    float JumpForce = 50.0f;
+    //[SerializeField]
+    //float JumpForce = 50.0f;
 
     [SerializeField]
     Collider2D JumpCollider;
@@ -40,7 +44,7 @@ public class Jumpable : MonoBehaviour
             {
                 isJumping = true;
                 var jumpSize = GetJumpSize();
-                Jump(this.transform, JumpForce, jumpSize);
+                Jump(this.transform, jumpData.JumpForce, jumpSize);
             }
         }
     }
@@ -120,7 +124,7 @@ public class Jumpable : MonoBehaviour
         {
             case JumpSize.Long:
                 Debug.Log(jumpHoldTime.ToString() + " Long");
-                body.Translate(Vector2.up * (JumpForce * 2) * Time.fixedDeltaTime);
+                body.Translate(Vector2.up * (jumpForce * 2) * Time.fixedDeltaTime);
                 break;
             case JumpSize.Medium:
                 Debug.Log(jumpHoldTime.ToString() + " Medium");

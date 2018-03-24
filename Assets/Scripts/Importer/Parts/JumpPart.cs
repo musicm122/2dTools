@@ -1,9 +1,9 @@
-using UnityEngine;
 using System.Collections;
 using Scripts.Importer;
 using System.IO;
 using Helpers;
 using System;
+using UnityEngine;
 using AssemblyCSharp.Assets.Scripts.PartValidation;
 using SimpleJSON;
 
@@ -13,8 +13,9 @@ namespace Scripts.Importer.Parts
     [CreateAssetMenu(menuName = "Tools/2dTools/Create JumpPart")]
     public class JumpPart : BasePart
     {
+        [Header("Force Applied to Jump", order = 1)]
         [SerializeField]
-        public float JumpForce { get; set; }
+        public float JumpForce;
 
         public override BasePart CreateInstance()
         {
