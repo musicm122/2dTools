@@ -54,7 +54,6 @@ namespace AssemblyCSharp.Assets.Scripts.UI
         public override void OnSelect(BaseEventData eventData)
         {
             base.OnSelect(eventData);
-            Debug.Log(this.gameObject.name + " was selected");
             TargetMenu.enabled = true;
             DisableOtherMenuPanels();
             OnNavigateTo?.Invoke();

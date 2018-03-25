@@ -57,7 +57,5 @@ namespace AssemblyCSharp.Assets.Scripts.UI
                 EnvironmentMenuCanvas
             };
         }
-
-        void SetEnabledRunPanelTab(BaseEventData data) { }
     }
 }
