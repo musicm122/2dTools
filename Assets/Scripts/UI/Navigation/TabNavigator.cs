@@ -9,23 +9,29 @@ namespace AssemblyCSharp.Assets.Scripts.UI
 {
     public class TabNavigator : MonoBehaviour
     {
-        [SerializeField]
-        Canvas[] MenuPanels;
 
-        [SerializeField]
-        NavigatorButton RunMenuNavigation;
+        Canvas[] MenuPanels;
 
         [SerializeField]
         Canvas RunMenuCanvas;
 
         [SerializeField]
-        NavigatorButton JumpMenuNavigation;
-
-        [SerializeField]
         Canvas JumpMenuCanvas;
 
         [SerializeField]
-        Button DashMenuNavigation;
+        Canvas DashMenuCanvas;
+
+        [SerializeField]
+        Canvas EnvironmentMenuCanvas;
+
+        [SerializeField]
+        NavigatorButton RunMenuNavigation;
+
+        [SerializeField]
+        NavigatorButton JumpMenuNavigation;
+
+        [SerializeField]
+        NavigatorButton DashMenuNavigation;
 
         [SerializeField]
         NavigatorButton EnvironmentMenuNavigation;
@@ -33,9 +39,23 @@ namespace AssemblyCSharp.Assets.Scripts.UI
         private void Start()
         {
             //wire up events
-            //var runMenu = MenuPanels.FirstOrDefault(canvas => canvas.name == "RunMenuCanvas");
+            this.MenuPanels = PopulateCanvases();
             RunMenuNavigation.InitializeArguments(MenuPanels, RunMenuCanvas);
             JumpMenuNavigation.InitializeArguments(MenuPanels, JumpMenuCanvas);
+            DashMenuNavigation.InitializeArguments(MenuPanels, DashMenuCanvas);
+            EnvironmentMenuNavigation.InitializeArguments(MenuPanels, EnvironmentMenuCanvas);
+            RunMenuNavigation.Select();
+        }
+
+        Canvas[] PopulateCanvases()
+        {
+            return new Canvas[]
+            {
+                RunMenuCanvas,
+                JumpMenuCanvas,
+                DashMenuCanvas,
+                EnvironmentMenuCanvas
+            };
         }
 
         void SetEnabledRunPanelTab(BaseEventData data) { }
