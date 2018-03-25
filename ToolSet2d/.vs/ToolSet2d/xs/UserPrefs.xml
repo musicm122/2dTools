@@ -1,58 +1,25 @@
 ﻿<Properties StartupConfiguration="{899B5B73-4380-46E5-7750-64B698D488AA}|Unit Tests">
-  <MonoDevelop.Ide.Workbench ActiveDocument="../Assets/Editor/ResetMenuTest.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="../Assets/Scripts/UI/Navigation/NavigatorButton.cs">
     <Files>
-      <File FileName="../Assets/Editor/CommonFixture.cs" Line="1" Column="1" />
-      <File FileName="../Assets/Scripts/Interfaces/IWorldInteract.cs" Line="1" Column="1" />
-      <File FileName="../Assets/Scripts/Interfaces/IMoveble.cs" Line="1" Column="1" />
-      <File FileName="../Assets/Scripts/FollowPlayer.cs" Line="17" Column="65" />
-      <File FileName="../Assets/Scripts/Jumpable.cs" Line="1" Column="1" />
-      <File FileName="../Assets/Scripts/Gravity.cs" Line="1" Column="1" />
-      <File FileName="../Assets/Scripts/Movable.cs" Line="1" Column="1" />
-      <File FileName="../Assets/Scripts/VisualEditorMenu/Pause.cs" Line="1" Column="1" />
-      <File FileName="../Assets/Scripts/VisualEditorMenu/PlayerMenu.cs" Line="1" Column="1" />
-      <File FileName="../Assets/Scripts/Base/BaseAction.cs" Line="1" Column="1" />
-      <File FileName="../Assets/Scripts/Base/RealtimeMonoBehavior.cs" Line="1" Column="1" />
-      <File FileName="../Assets/Scripts/Importer/PartFactory/PartFactory.cs" Line="1" Column="1" />
-      <File FileName="../Assets/Scripts/Importer/PartFactory/RunPartFactory.cs" Line="1" Column="1" />
-      <File FileName="../Assets/Scripts/Importer/Parts/BasePart.cs" Line="1" Column="1" />
-      <File FileName="../Assets/Scripts/Importer/ExportConfiguration.cs" Line="1" Column="1" />
-      <File FileName="../Assets/Scripts/PartValidation/RuleResult.cs" Line="1" Column="1" />
-      <File FileName="../Assets/Scripts/PartValidation/RuleResultSummary.cs" Line="1" Column="1" />
-      <File FileName="../Assets/Scripts/Interfaces/IExportable.cs" Line="1" Column="1" />
-      <File FileName="../Assets/Scripts/PartValidation/Rules/RunPartMustHaveMaxSpeed.cs" Line="1" Column="1" />
-      <File FileName="../Assets/Scripts/GameState.cs" Line="1" Column="1" />
-      <File FileName="../Assets/Editor/ExamplePlayerTests.cs" Line="1" Column="1" />
-      <File FileName="../Assets/Editor/ResetMenuTest.cs" Line="9" Column="31" />
+      <File FileName="../Assets/Scripts/UI/Navigation/TabNavigator.cs" Line="37" Column="76" />
+      <File FileName="../Assets/Scripts/VisualEditorMenu/PlayerMenu.cs" Line="31" Column="33" />
+      <File FileName="../Assets/Scripts/UI/Navigation/NavigatorButton.cs" Line="60" Column="10" />
+      <File FileName="Source Not Found" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="ToolSet2d" expanded="True">
-            <Node name="Assembly-CSharp" expanded="True" />
-            <Node name="Assembly-CSharp-Editor" expanded="True">
-              <Node name="Packages" selected="True" />
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-      <Pad Id="MonoDevelop.UnitTesting.TestPad">
-        <State name="__root__">
-          <Node name="ToolSet2d" expanded="True">
-            <Node name="Assembly-CSharp-Editor" selected="True" />
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/terrancesmith/2dTools/Assets/Scripts/Command/ResetStageCommand.cs" line="14" column="31" />
+      <Breakpoint file="/Users/terrancesmith/2dTools/Assets/Scripts/UI/Navigation/NavigatorButton.cs" line="56" column="38" />
+      <Breakpoint file="/Users/terrancesmith/2dTools/Assets/Scripts/UI/Navigation/TabNavigator.cs" line="36" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>
     <Watch file="../../../../.vs/2dTools/xs/Assets/Scripts/PlayerController.cs" line="53" offsetX="406" offsetY="832" expression="speed" liveUpdate="False" />
     <Watch file="../../../../Assets/Editor/ImportPartsTests.cs" line="64" offsetX="454" offsetY="1008" expression="currentPath" liveUpdate="False" />
+    <Watch file="../../../../Assets/Scripts/UI/Navigation/NavigatorButton.cs" line="47" offsetX="525" offsetY="736" expression=" AvailableMenuPanels[i]" liveUpdate="False" />
+    <Watch file="../../../../Assets/Scripts/UI/Navigation/NavigatorButton.cs" line="47" offsetX="527" offsetY="707" expression="TargetMenu" liveUpdate="False" />
   </MonoDevelop.Ide.DebuggingService.PinnedWatches>
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp-Editor PreferredExecutionTarget="MonoDevelop.Default" />
   <MultiItemStartupConfigurations />
