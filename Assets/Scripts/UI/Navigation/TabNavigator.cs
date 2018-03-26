@@ -9,7 +9,6 @@ namespace AssemblyCSharp.Assets.Scripts.UI
 {
     public class TabNavigator : MonoBehaviour
     {
-
         Canvas[] MenuPanels;
 
         [SerializeField]

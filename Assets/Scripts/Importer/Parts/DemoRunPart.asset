@@ -13,4 +13,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Gravity: 1.2
   ExportConfig: {fileID: 11400000, guid: 1e85c45212abd464381d95eb48ee76e4, type: 2}
-  MaxSpeed: 12
+  MaxSpeed: 5

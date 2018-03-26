@@ -405,7 +405,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.0000072610187}
+  m_AnchoredPosition: {x: 0, y: -0.000014543533}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &62314057
@@ -1013,6 +1013,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 241573031}
+  - component: {fileID: 241573032}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -1042,9 +1043,28 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000006784309}
+  m_AnchoredPosition: {x: 0, y: -0.000014603138}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
+--- !u!114 &241573032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 241573030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c2d895df1e20496d8d2eefc9e9bf6c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MovableTarget: {fileID: 1175667010}
+  Import: {fileID: 577885357}
+  Export: {fileID: 800738575}
+  Apply: {fileID: 1189162646}
+  MaxRunSpeed: {fileID: 1093874696}
+  IsConstantSpeed: {fileID: 1228658016}
+  HoldToRun: {fileID: 765052879}
+  HasForwardMomentum: {fileID: 618311495}
 --- !u!1 &284324346
 GameObject:
   m_ObjectHideFlags: 0
@@ -3410,7 +3430,7 @@ GameObject:
   - component: {fileID: 618311494}
   - component: {fileID: 618311495}
   m_Layer: 5
-  m_Name: Toggle
+  m_Name: HasForwardMomentumToggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4067,7 +4087,7 @@ GameObject:
   - component: {fileID: 765052878}
   - component: {fileID: 765052879}
   m_Layer: 5
-  m_Name: Toggle
+  m_Name: HoldToRunToggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5538,7 +5558,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.0000072610187}
+  m_AnchoredPosition: {x: 0, y: -0.000014543533}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1050664011
@@ -5903,7 +5923,7 @@ GameObject:
   - component: {fileID: 1093874697}
   - component: {fileID: 1093874696}
   m_Layer: 5
-  m_Name: InputField
+  m_Name: MaxRunSpeedInputField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6672,7 +6692,7 @@ GameObject:
   - component: {fileID: 1189162647}
   - component: {fileID: 1189162646}
   m_Layer: 5
-  m_Name: Apply Changes
+  m_Name: Apply Changes To Runpart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6792,7 +6812,7 @@ GameObject:
   - component: {fileID: 1228658015}
   - component: {fileID: 1228658016}
   m_Layer: 5
-  m_Name: Toggle
+  m_Name: IsConstantSpeedToggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8697,7 +8717,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.0000072610187}
+  m_AnchoredPosition: {x: 0, y: -0.000014543533}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1632436990
