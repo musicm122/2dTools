@@ -1,17 +1,33 @@
 ﻿<Properties StartupConfiguration="{899B5B73-4380-46E5-7750-64B698D488AA}|Unit Tests">
   <MonoDevelop.Ide.Workbench>
-    <Files>
-      <File FileName="../Assets/Scripts/UI/Navigation/TabNavigator.cs" Line="24" Column="37" />
-      <File FileName="../Assets/Scripts/UI/Navigation/RunMenu.cs" Line="39" Column="42" />
-      <File FileName="../Assets/Scripts/Movable.cs" Line="13" Column="16" />
-      <File FileName="../Assets/Scripts/Importer/Parts/RunPart.cs" Line="29" Column="9" />
-    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="ToolSet2d" expanded="True">
+            <Node name="Assembly-CSharp" expanded="True">
+              <Node name="Assets" expanded="True">
+                <Node name="Scripts" expanded="True">
+                  <Node name="Extensions" expanded="True" />
+                  <Node name="UI" expanded="True">
+                    <Node name="Navigation" expanded="True">
+                      <Node name="RunMenu.cs" selected="True" />
+                    </Node>
+                  </Node>
+                  <Node name="VisualEditorMenu" expanded="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/terrancesmith/2dTools/Assets/Scripts/Command/ResetStageCommand.cs" line="14" column="31" />
-      <Breakpoint file="/Users/terrancesmith/2dTools/Assets/Scripts/UI/Navigation/TabNavigator.cs" line="41" column="1" />
+      <Breakpoint file="/Users/terrancesmith/2dTools/Assets/Scripts/UI/Navigation/TabNavigator.cs" line="134" column="1" />
+      <Breakpoint file="/Users/terrancesmith/2dTools/Assets/Scripts/UI/Navigation/TabNavigator.cs" line="43" column="31" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>

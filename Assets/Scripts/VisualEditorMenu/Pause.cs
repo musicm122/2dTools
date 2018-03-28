@@ -1,6 +1,8 @@
 ﻿using System;
 using Helpers;
 using UnityEngine;
+using System.Linq;
+using AssemblyCSharp.Assets.Scripts.Extensions;
 
 namespace AssemblyCSharp.Assets.Scripts.VisualEditorMenu
 {
@@ -11,12 +13,13 @@ namespace AssemblyCSharp.Assets.Scripts.VisualEditorMenu
         private Canvas Menu;
 
         [SerializeField]
-        private string PauseButtoName;
+        private string PauseButtonName;
 
 
         private void Start()
         {
             Menu.enabled = false;
+            Menu.SetEnabledStateOnSelectable(false);
         }
 
         private void Update()
@@ -26,7 +29,7 @@ namespace AssemblyCSharp.Assets.Scripts.VisualEditorMenu
 
         void PauseCheck()
         {
-            if (Input.GetButtonDown(PauseButtoName))
+            if (Input.GetButtonDown(PauseButtonName))
             {
                 TogglePauseMenu();
             }
@@ -35,6 +38,8 @@ namespace AssemblyCSharp.Assets.Scripts.VisualEditorMenu
         void TogglePauseMenu()
         {
             Menu.enabled = !Menu.enabled;
+            Menu.SetEnabledStateOnSelectable(Menu.enabled);
+
             if (Menu.enabled)
             {
                 Time.timeScale = 0;

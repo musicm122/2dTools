@@ -12,7 +12,7 @@ namespace AssemblyCSharp.Assets.Scripts.UI
 
         Canvas[] AvailableMenuPanels;
 
-        Action OnNavigateTo;
+        public Action<NavigatorButton, Canvas> OnNavigateTo;
 
         public void InitializeArguments(Canvas[] availableMenus, Canvas targetMenu)
         {
@@ -39,8 +39,6 @@ namespace AssemblyCSharp.Assets.Scripts.UI
         }
         void DisableOtherMenuPanels()
         {
-            ValidateTargetMenu();
-            ValidateAvailableMenus();
 
             for (int i = 0; i < AvailableMenuPanels.Length; i++)
             {
@@ -54,9 +52,11 @@ namespace AssemblyCSharp.Assets.Scripts.UI
         public override void OnSelect(BaseEventData eventData)
         {
             base.OnSelect(eventData);
+            ValidateTargetMenu();
+            ValidateAvailableMenus();
             TargetMenu.enabled = true;
             DisableOtherMenuPanels();
-            OnNavigateTo?.Invoke();
+            OnNavigateTo?.Invoke(this, TargetMenu);
         }
     }
 

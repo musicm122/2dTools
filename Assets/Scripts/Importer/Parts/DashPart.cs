@@ -26,6 +26,13 @@ namespace Scripts.Importer.Parts
             this.Gravity = json["Gravity"].AsFloat;
         }
 
+        public override void Reset()
+        {
+            var defaultValues = Constants.DefaultValues.GetDefaultDashPart();
+            this.MaxDashSpeed = defaultValues.MaxDashSpeed;
+            this.Gravity = defaultValues.Gravity;
+        }
+
         public override RuleResultSummary Validate()
         {
             throw new NotImplementedException();
