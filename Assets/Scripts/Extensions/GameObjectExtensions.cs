@@ -32,6 +32,8 @@ namespace AssemblyCSharp.Assets.Scripts.Extensions
             }
         }
 
+
+
         public static void SetEnabledStateOnSelectable(this GameObject gameObj, bool state)
         {
             foreach (var element in gameObj.GetComponentsInChildren<Selectable>())
@@ -45,6 +47,22 @@ namespace AssemblyCSharp.Assets.Scripts.Extensions
             foreach (var element in canvas.GetComponentsInChildren<Selectable>())
             {
                 element.enabled = state;
+            }
+        }
+
+        public static void SetEnabledStateOnChildrenCanvas(this Canvas canvas, bool state)
+        {
+            foreach (var element in canvas.GetComponentsInChildren<Canvas>())
+            {
+                element.enabled = state;
+            }
+        }
+
+        public static void SetEnabledStateOnSelectableGameObject(this Canvas canvas, bool state)
+        {
+            foreach (var element in canvas.GetComponentsInChildren<Selectable>())
+            {
+                element.gameObject.SetActive(state);
             }
         }
     }

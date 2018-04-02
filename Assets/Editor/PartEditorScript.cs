@@ -30,7 +30,6 @@ public class PartEditorScript : Editor
         DrawDefaultInspector();
     }
 
-
     void Import(BasePart part)
     {
         try

@@ -58,7 +58,6 @@ namespace AssemblyCSharpEditor.Assets.Editor
 
             Assert.AreEqual(expectedGravity, part.Gravity, "RunPart Gravity Should Match");
             Assert.AreEqual(expectedMaxSpeed, part.MaxSpeed, "RunPart MaxSpeed Should Match");
-
         }
     }
 }

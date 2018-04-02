@@ -12,13 +12,6 @@ namespace AssemblyCSharp.Assets.Scripts.UI.Navigation
     {
 
         [SerializeField]
-        protected Texture2D directoryImage;
-
-        [SerializeField]
-        protected Texture2D fileImage;
-
-
-        [SerializeField]
         Movable MovableTarget;
 
         [SerializeField]
@@ -32,6 +25,9 @@ namespace AssemblyCSharp.Assets.Scripts.UI.Navigation
 
         [SerializeField]
         InputField MaxRunSpeed;
+
+        //[SerializeField]
+        //InputField MaxRunSpeed;
 
         [SerializeField]
         Button IncrementSpeed;
@@ -77,32 +73,24 @@ namespace AssemblyCSharp.Assets.Scripts.UI.Navigation
             IsConstantSpeed.onValueChanged.RemoveAllListeners();
         }
 
-        void SetDefaultValues()
-        {
-            MaxRunSpeed.text = runPart.MaxSpeed.ToString();
-        }
-
         void UpdateValues()
         {
             MaxRunSpeed.text = runPart.MaxSpeed.ToString();
-
         }
 
         void IncrementSpeedValue()
         {
             this.runPart.MaxSpeed += +1.0f;
-            UpdateValues();
         }
+
         void DecrementSpeedValue()
         {
             this.runPart.MaxSpeed += -1.0f;
-            UpdateValues();
         }
 
         private void OnEnable()
         {
             runPart = this.MovableTarget.RunData;
-            SetDefaultValues();
         }
 
         private void Start()
@@ -110,7 +98,11 @@ namespace AssemblyCSharp.Assets.Scripts.UI.Navigation
             runPart = this.MovableTarget.RunData;
             AddClickListenersToButtons();
             AddValueChangedListenersToControls();
-            SetDefaultValues();
+        }
+
+        private void FixedUpdate()
+        {
+            UpdateValues();
         }
 
         void ImportJson()
@@ -121,7 +113,6 @@ namespace AssemblyCSharp.Assets.Scripts.UI.Navigation
                 runPart.ImportFromJson(result);
                 UnityEditor.EditorUtility.DisplayDialog($"2d Tools Import Successful", $"File at {result} imported successfully.", "Okay");
             }
-            UpdateValues();
         }
 
         void ExportJson()

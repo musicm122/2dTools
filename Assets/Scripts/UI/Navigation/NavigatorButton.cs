@@ -12,7 +12,7 @@ namespace AssemblyCSharp.Assets.Scripts.UI
 
         Canvas[] AvailableMenuPanels;
 
-        public Action<NavigatorButton, Canvas> OnNavigateTo;
+        public Action<Selectable, Canvas> OnNavigateTo;
 
         public void InitializeArguments(Canvas[] availableMenus, Canvas targetMenu)
         {

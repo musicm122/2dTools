@@ -4,14 +4,23 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
 using System.Linq;
+using AssemblyCSharp.Assets.Scripts.Extensions;
+using AssemblyCSharp.Assets.Scripts.VisualEditorMenu;
 
 namespace AssemblyCSharp.Assets.Scripts.UI
 {
     public class TabNavigator : MonoBehaviour
     {
-        string lastNavigatedElement;
+        string lastNavigatedMenu;
+        Selectable lastSelected;
+
+        [SerializeField]
+        GameState GameState;
 
         Canvas[] MenuPanels { get { return GetAllMenuCanvases(); } }
+
+        [SerializeField]
+        CanvasRenderer ParentMenu;
 
         [SerializeField]
         Canvas RunMenuCanvas;
@@ -37,69 +46,92 @@ namespace AssemblyCSharp.Assets.Scripts.UI
         [SerializeField]
         NavigatorButton EnvironmentMenuNavigation;
 
+        private NavigatorButton defaultMenuNav;
 
         private void OnEnable()
         {
+            Debug.Log("<color=green>OnEnable Called for Tab Manager</color>");
+            defaultMenuNav = RunMenuNavigation;
             InitNavBindings();
-            SetSelectionFromHistory();
-
-            //Masks?
-            //https://docs.unity3d.com/Manual/script-Mask.html
-        }
-
-        void onDisable()
-        {
-
-        }
-
-        void InitRunTabMenuBindings()
-        {
-            RunMenuNavigation.InitializeArguments(MenuPanels, RunMenuCanvas);
-            RunMenuNavigation.OnNavigateTo = UpdateSelection;
-        }
-
-        void InitJumpTabMenuBindings()
-        {
-            JumpMenuNavigation.InitializeArguments(MenuPanels, JumpMenuCanvas);
-            JumpMenuNavigation.OnNavigateTo = UpdateSelection;
-
-        }
-
-        void InitDashTabMenuBindings()
-        {
-            DashMenuNavigation.InitializeArguments(MenuPanels, DashMenuCanvas);
-            DashMenuNavigation.OnNavigateTo = UpdateSelection;
-        }
-
-        void InitEnvironmentTabMenuBindings()
-        {
-            EnvironmentMenuNavigation.InitializeArguments(MenuPanels, EnvironmentMenuCanvas);
-            EnvironmentMenuNavigation.OnNavigateTo = UpdateSelection;
-        }
-
-        void InitNavBindings()
-        {
-            InitRunTabMenuBindings();
-            InitJumpTabMenuBindings();
-            InitDashTabMenuBindings();
-            InitEnvironmentTabMenuBindings();
+            FocusLastNavigatedMenu();
         }
 
         private void Start()
         {
-            //wire up events
-            InitNavBindings();
-            SelectElement(RunMenuNavigation);
+
         }
 
         private void OnDestroy()
         {
-            Debug.Log("On Destroy Called for Tab Manager");
+            Debug.Log("<color=green>Destroy Called for Tab Manager</color>");
             //wire up events
+            GameState.RaisePauseStateChanged -= HandlePauseStateChange;
             RunMenuNavigation.OnNavigateTo = null;
             JumpMenuNavigation.OnNavigateTo = null;
             DashMenuNavigation.OnNavigateTo = null;
             EnvironmentMenuNavigation.OnNavigateTo = null;
+        }
+
+        void SetMenuVisibility(bool state)
+        {
+            ParentMenu.gameObject.SetActive(state);
+            var i = 0;
+            for (i = 0; i < MenuPanels.Length; i++)
+            {
+                MenuPanels[i].SetEnabledStateOnChildrenCanvas(state);
+            }
+        }
+
+        void InitMenuItemBindings(NavigatorButton btn, Canvas[] canvases, Canvas target, Action<Selectable, Canvas> updateSelection)
+        {
+            btn.InitializeArguments(canvases, target);
+            btn.OnNavigateTo = updateSelection;
+        }
+
+        void InitNavBindings()
+        {
+            GameState.RaisePauseStateChanged += HandlePauseStateChange;
+            InitMenuItemBindings(RunMenuNavigation, MenuPanels, RunMenuCanvas, UpdateSelection);
+            InitMenuItemBindings(JumpMenuNavigation, MenuPanels, JumpMenuCanvas, UpdateSelection);
+            InitMenuItemBindings(DashMenuNavigation, MenuPanels, DashMenuCanvas, UpdateSelection);
+            InitMenuItemBindings(EnvironmentMenuNavigation, MenuPanels, EnvironmentMenuCanvas, UpdateSelection);
+        }
+
+        void HandlePauseStateChange(object sender, PauseEventArgs eventArgs)
+        {
+            Debug.Log("OnPauseHandler called for Tab Navigator");
+            SetMenuVisibility(eventArgs.IsPaused);
+            if (eventArgs.IsPaused)
+            {
+                FocusLastNavigatedMenu();
+            }
+        }
+
+        void UpdateSelection(Selectable sender, Canvas canvas)
+        {
+            this.lastSelected = sender;
+            this.lastNavigatedMenu = sender.name;
+            Debug.Log($"last selected element = {lastNavigatedMenu}");
+        }
+
+        void FocusLastNavigatedMenu()
+        {
+            if (!String.IsNullOrWhiteSpace(lastNavigatedMenu))
+            {
+                var navButtonToSelect = GetAllNavigatorButtons().FirstOrDefault(nav => lastNavigatedMenu == nav.name);
+                SelectElement(navButtonToSelect);
+            }
+            else
+            {
+                SelectElement(defaultMenuNav);
+            }
+        }
+
+        void SelectElement(Selectable selectable)
+        {
+            EventSystem.current.SetSelectedGameObject(selectable.gameObject);
+            selectable.Select();
+            selectable.OnSelect(new BaseEventData(EventSystem.current));
         }
 
         Canvas[] GetAllMenuCanvases()
@@ -123,28 +155,6 @@ namespace AssemblyCSharp.Assets.Scripts.UI
             };
         }
 
-        void UpdateSelection(NavigatorButton sender, Canvas canvas)
-        {
-            this.lastNavigatedElement = sender.name;
-            Debug.Log($"last selected element = {lastNavigatedElement}");
-        }
 
-        void SetSelectionFromHistory()
-        {
-            if (!String.IsNullOrWhiteSpace(lastNavigatedElement))
-            {
-                var navButtonToSelect = GetAllNavigatorButtons().FirstOrDefault(nav => lastNavigatedElement == nav.name);
-
-                SelectElement(navButtonToSelect);
-            }
-        }
-
-        void SelectElement(Button button)
-        {
-            EventSystem.current.SetSelectedGameObject(button.gameObject);
-            //navButtonToSelect.Select();
-            button.OnSelect(new BaseEventData(EventSystem.current));
-
-        }
     }
 }

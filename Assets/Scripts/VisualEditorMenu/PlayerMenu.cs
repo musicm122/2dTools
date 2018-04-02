@@ -25,6 +25,7 @@ namespace AssemblyCSharp.Assets.Scripts.VisualEditorMenu
         {
             GameState.ResetPartState();
             Debug.Log("Reset Player Initiated");
+            GameState.SetPauseState(false);
             Time.timeScale = 1.0f;
         }
 
@@ -32,18 +33,16 @@ namespace AssemblyCSharp.Assets.Scripts.VisualEditorMenu
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             Debug.Log("Reset World Initiated");
+            GameState.SetPauseState(false);
             Time.timeScale = 1.0f;
         }
 
-        void OnEnable()
-        {
-
-        }
 
         private void Start()
         {
             ResetStageButton.onClick.AddListener(ResetWorld);
             ResetPlayerButton.onClick.AddListener(ResetPlayer);
+            GameState.SetPauseState(false);
         }
 
         private void OnDestroy()
