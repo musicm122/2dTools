@@ -7,6 +7,7 @@ using AssemblyCSharp.Assets.Scripts.Helpers;
 using SimpleJSON;
 using AssemblyCSharp.Assets.Scripts.PartValidation;
 using AssemblyCSharp.Assets.Scripts.Importer.PartFactory;
+using Constants;
 
 namespace Scripts.Importer.Parts
 {
@@ -31,6 +32,14 @@ namespace Scripts.Importer.Parts
         {
             this.MaxSpeed = json["MaxSpeed"].AsFloat;
             this.Gravity = json["Gravity"].AsFloat;
+        }
+
+        public override void Reset()
+        {
+            var defaultValues = DefaultValues.GetDefaultRunPart();
+            this.MaxSpeed = defaultValues.MaxSpeed;
+            this.Gravity = defaultValues.Gravity;
+
         }
 
         public override RuleResultSummary Validate()

@@ -30,6 +30,7 @@ namespace Constants
         public static readonly float Gravity = 9.8f;
         public static readonly float JumpForce = 50.0f;
         public static readonly float MaxRunSpeed = 20.0f;
+        public static readonly float MaxDashSpeed = 10.0f;
 
         public static JumpPart GetDefaultJumpPart()
         {
@@ -44,6 +45,14 @@ namespace Constants
             var part = PartFactory.CreatePart<RunPart>();
             part.Gravity = Gravity;
             part.MaxSpeed = MaxRunSpeed;
+            return part;
+        }
+
+        public static DashPart GetDefaultDashPart()
+        {
+            var part = PartFactory.CreatePart<DashPart>();
+            part.Gravity = Gravity;
+            part.MaxDashSpeed = MaxDashSpeed;
             return part;
         }
     }

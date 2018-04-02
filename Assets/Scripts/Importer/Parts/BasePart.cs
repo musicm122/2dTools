@@ -54,6 +54,7 @@ namespace Scripts.Importer.Parts
             }
         }
 
+        public abstract void Reset();
         public abstract void Load(JSONNode json);
         public abstract RuleResultSummary Validate();
     }

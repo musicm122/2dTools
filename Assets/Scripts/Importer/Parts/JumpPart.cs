@@ -6,6 +6,7 @@ using System;
 using UnityEngine;
 using AssemblyCSharp.Assets.Scripts.PartValidation;
 using SimpleJSON;
+using Constants;
 
 namespace Scripts.Importer.Parts
 {
@@ -26,6 +27,13 @@ namespace Scripts.Importer.Parts
         {
             this.JumpForce = json["MaxDashSpeed"].AsFloat;
             this.Gravity = json["Gravity"].AsFloat;
+        }
+
+        public override void Reset()
+        {
+            var defaultValues = DefaultValues.GetDefaultJumpPart();
+            this.JumpForce = defaultValues.JumpForce;
+            this.Gravity = defaultValues.Gravity;
         }
 
         public override RuleResultSummary Validate()
