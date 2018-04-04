@@ -8,26 +8,23 @@ using System.Xml.Serialization;
 
 namespace AssemblyCSharp.Assets.Scripts.UI.Navigation
 {
-    public class RunMenu : MonoBehaviour
+    public class RunMenu : MonoBehaviour, IPartMenu
     {
-
+        #region Inspector Fields
         [SerializeField]
         Movable MovableTarget;
 
         [SerializeField]
-        Button Import;
+        public Button Import;
 
         [SerializeField]
-        Button Export;
+        public Button Export;
 
         [SerializeField]
         Button Apply;
 
         [SerializeField]
         InputField MaxRunSpeed;
-
-        //[SerializeField]
-        //InputField MaxRunSpeed;
 
         [SerializeField]
         Button IncrementSpeed;
@@ -44,9 +41,11 @@ namespace AssemblyCSharp.Assets.Scripts.UI.Navigation
         [SerializeField]
         Toggle HasForwardMomentum;
 
+        #endregion Inspector Fields
+
         RunPart runPart;
 
-        void AddValueChangedListenersToControls()
+        public void AddValueChangedListenersToControls()
         {
             MaxRunSpeed.onValueChanged.AddListener((string val) => runPart.MaxSpeed = float.Parse(val));
             //HasForwardMomentum.onValueChanged.AddListener((bool val) => { runPart.HasForwardMomentum = val });
@@ -54,7 +53,7 @@ namespace AssemblyCSharp.Assets.Scripts.UI.Navigation
             //HoldToRun.onValueChanged.AddListener((bool val) => { runPart.HoldToRun = val });
         }
 
-        void AddClickListenersToButtons()
+        public void AddClickListenersToButtons()
         {
             //Apply.onClick.AddListener(ApplyChangesToPart);
             Export.onClick.AddListener(ExportJson);
@@ -63,7 +62,7 @@ namespace AssemblyCSharp.Assets.Scripts.UI.Navigation
             DecrementSpeed.onClick.AddListener(DecrementSpeedValue);
         }
 
-        private void OnDestroy()
+        void OnDestroy()
         {
             //Apply.onClick.RemoveAllListeners();
             Export.onClick.RemoveAllListeners();
@@ -73,27 +72,27 @@ namespace AssemblyCSharp.Assets.Scripts.UI.Navigation
             IsConstantSpeed.onValueChanged.RemoveAllListeners();
         }
 
-        void UpdateValues()
+        public void UpdateValues()
         {
             MaxRunSpeed.text = runPart.MaxSpeed.ToString();
         }
 
-        void IncrementSpeedValue()
+        private void IncrementSpeedValue()
         {
             this.runPart.MaxSpeed += +1.0f;
         }
 
-        void DecrementSpeedValue()
+        private void DecrementSpeedValue()
         {
             this.runPart.MaxSpeed += -1.0f;
         }
 
-        private void OnEnable()
+        void OnEnable()
         {
             runPart = this.MovableTarget.RunData;
         }
 
-        private void Start()
+        void Start()
         {
             runPart = this.MovableTarget.RunData;
             AddClickListenersToButtons();
@@ -105,7 +104,7 @@ namespace AssemblyCSharp.Assets.Scripts.UI.Navigation
             UpdateValues();
         }
 
-        void ImportJson()
+        public void ImportJson()
         {
             var result = UnityEditor.EditorUtility.OpenFilePanel("Json To Import", Constants.DefaultConfig.GetDefaultExportDir(), "json");
             if (!String.IsNullOrWhiteSpace(result))
@@ -115,7 +114,7 @@ namespace AssemblyCSharp.Assets.Scripts.UI.Navigation
             }
         }
 
-        void ExportJson()
+        public void ExportJson()
         {
             var result = this.runPart.ExportToJson();
             if (result.Item1)
@@ -128,12 +127,9 @@ namespace AssemblyCSharp.Assets.Scripts.UI.Navigation
             }
         }
 
-
         void HasForwardMomentum_ValueChanged(bool value)
         {
             //update run part here
         }
-
-
     }
 }

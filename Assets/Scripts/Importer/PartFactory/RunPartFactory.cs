@@ -23,14 +23,12 @@ namespace AssemblyCSharp.Assets.Scripts.Importer.PartFactory
         public static RunPart LoadPartWithJson(JSONNode json, RunPart part)
         {
             part.MaxSpeed = json["MaxSpeed"].AsFloat;
-            part.Gravity = json["Gravity"].AsFloat;
             return part;
         }
 
         public static RunPart LoadNewPartWithOldPart(RunPart newPart, RunPart existingPart)
         {
             newPart.MaxSpeed = existingPart.MaxSpeed;
-            newPart.Gravity = existingPart.Gravity;
             return newPart;
         }
     }
