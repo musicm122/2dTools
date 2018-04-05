@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: DefaultJumpPart
   m_EditorClassIdentifier: 
   ExportConfig: {fileID: 11400000, guid: 1e85c45212abd464381d95eb48ee76e4, type: 2}
-  JumpForce: 2000
+  JumpForce: 200
   GroundLayer: Ground
   JumpButtonName: Jump
   GravityScale: 1

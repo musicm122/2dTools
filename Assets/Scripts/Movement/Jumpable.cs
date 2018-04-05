@@ -38,12 +38,8 @@ public partial class Jumpable : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (ShouldJump())
-        {
-            StartCoroutine(JumpRoutine());
-        }
-        //JumpCheck();
-        //IsOnTheGround();
+        JumpCheck();
+        IsOnTheGround();
     }
 
     public void JumpCheck()

@@ -31,19 +31,22 @@ public class Movable : MonoBehaviour, IMovable
         {
             ApplyStaticSpeed(horizontalInputVal);
         }
-
+        /*
         if (Mathf.Abs(rb2d.velocity.x) > RunData.MaxSpeed)
         {
             rb2d.velocity = new Vector2(Mathf.Sign(rb2d.velocity.x) * RunData.MaxSpeed, rb2d.velocity.y);
         }
-
+        */
+        Debug.Log($"Move : Current Velocity = {rb2d.velocity.ToString()}");
     }
 
     void ApplyAcceleration(float horizontalInputVal)
     {
         if (horizontalInputVal * rb2d.velocity.x < RunData.MaxSpeed)
         {
-            rb2d.AddForce(Vector2.right * horizontalInputVal * RunData.MoveForce);
+            var applyForce = Vector2.right * horizontalInputVal * RunData.MoveForce;
+            rb2d.AddForce(applyForce);
+            Debug.Log($"ApplyAcceleration Apply Formula: ${Vector2.right.ToString()}  * {horizontalInputVal.ToString()} * {RunData.MoveForce.ToString()}; = {applyForce}");
         }
     }
 
@@ -51,7 +54,9 @@ public class Movable : MonoBehaviour, IMovable
     {
         if (horizontalInputVal * rb2d.velocity.x < RunData.MaxSpeed)
         {
-            rb2d.velocity = Vector2.right * horizontalInputVal * RunData.MoveForce;
+            var currentVelocity = rb2d.velocity;
+            currentVelocity.x = Vector2.right.x * horizontalInputVal * RunData.MoveForce;
+            rb2d.velocity = currentVelocity;
         }
     }
 
@@ -59,7 +64,9 @@ public class Movable : MonoBehaviour, IMovable
     {
         if (ShouldMove())
         {
-            StartCoroutine(MoveRoutine());
+            float h = Input.GetAxis("Horizontal");
+            Move(h);
+            FlipCheck(h);
         }
     }
 
