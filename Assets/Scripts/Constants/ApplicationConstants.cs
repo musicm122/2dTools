@@ -50,6 +50,7 @@ namespace Constants
     public static class DefaultValues
     {
         public static readonly float Gravity = 9.8f;
+        public static readonly float GravityScale = 1.0f;
         public static readonly float JumpForce = 1000.0f;
         public static readonly float MaxRunSpeed = 20.0f;
         public static readonly float MoveForce = 365f;

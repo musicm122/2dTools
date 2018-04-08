@@ -28,6 +28,9 @@ namespace Scripts.Importer.Parts
         public float GravityScale = 1f;
 
         [SerializeField]
+        public float FallingGravityScale = 1f;
+
+        [SerializeField]
         public int MaxJumpCount = 2;
 
         [SerializeField]

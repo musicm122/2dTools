@@ -8,37 +8,17 @@ using System.Xml.Serialization;
 
 namespace AssemblyCSharp.Assets.Scripts.UI.Navigation
 {
-    public class RunMenu : MonoBehaviour, IPartMenu
+    public class RunMenu : MonoBehaviour, IPartMenu<RunPart>
     {
         #region Inspector Fields
         [SerializeField]
         Movable MovableTarget;
 
         [SerializeField]
-        public Button Import;
+        FloatIncrementButton MaxRunSpeed;
 
         [SerializeField]
-        public Button Export;
-
-        [SerializeField]
-        Button Apply;
-
-        [SerializeField]
-        IncrementButton MaxRunSpeed;
-
-        [SerializeField]
-        IncrementButton MoveForce;
-
-        /*
-        [SerializeField]
-        InputField MaxRunSpeed;
-
-        [SerializeField]
-        Button IncrementSpeed;
-
-        [SerializeField]
-        Button DecrementSpeed;
-        */
+        FloatIncrementButton MoveForce;
 
         [SerializeField]
         Toggle IsConstantSpeed;
@@ -49,21 +29,35 @@ namespace AssemblyCSharp.Assets.Scripts.UI.Navigation
         [SerializeField]
         Toggle HasForwardMomentum;
 
+        [SerializeField]
+        public Button Import;
+
+        [SerializeField]
+        public Button Export;
+
         #endregion Inspector Fields
 
-        RunPart runPart;
+        private RunPart runPart;
 
-        public void AddValueChangedListenersToControls()
+        public RunPart Part
         {
-            MaxRunSpeed.OnUpdate += UpdateMaxSpeed;
-            MoveForce.OnUpdate += UpdateMoveForce;
-            HasForwardMomentum.onValueChanged.AddListener(UpdateHasMomentum);
+            get
+            {
+                return runPart;
+            }
         }
 
-        public void AddClickListenersToButtons()
+        void OnEnable()
         {
-            Export.onClick.AddListener(ExportJson);
-            Import.onClick.AddListener(ImportJson);
+            runPart = this.MovableTarget.RunData;
+            SetInitBindings();
+            UpdateValues();
+        }
+
+        void Start()
+        {
+            SetInitBindings();
+            UpdateValues();
         }
 
         void OnDestroy()
@@ -76,51 +70,30 @@ namespace AssemblyCSharp.Assets.Scripts.UI.Navigation
             IsConstantSpeed.onValueChanged.RemoveAllListeners();
         }
 
-
-        void OnEnable()
+        void SetInitBindings()
         {
             runPart = this.MovableTarget.RunData;
-        }
-
-        void Start()
-        {
-            runPart = this.MovableTarget.RunData;
-            MaxRunSpeed.Value = runPart.MaxSpeed;
-            MoveForce.Value = runPart.MoveForce;
             AddClickListenersToButtons();
             AddValueChangedListenersToControls();
         }
 
-        void FixedUpdate()
+        void UpdateValues()
         {
-            UpdateValues();
+            MaxRunSpeed.Value = runPart.MaxSpeed;
+            MoveForce.Value = runPart.MoveForce;
         }
 
-        public void ImportJson()
+        public void AddValueChangedListenersToControls()
         {
-            var result = UnityEditor.EditorUtility.OpenFilePanel("Json To Import", Constants.DefaultConfig.GetDefaultExportDir(), "json");
-            if (!String.IsNullOrWhiteSpace(result))
-            {
-                runPart.ImportFromJson(result);
-                UnityEditor.EditorUtility.DisplayDialog($"2d Tools Import Successful", $"File at {result} imported successfully.", "Okay");
-            }
+            MaxRunSpeed.OnUpdate += UpdateMaxSpeed;
+            MoveForce.OnUpdate += UpdateMoveForce;
+            HasForwardMomentum.onValueChanged.AddListener(UpdateHasMomentum);
         }
 
-        public void ExportJson()
+        public void AddClickListenersToButtons()
         {
-            var result = this.runPart.ExportToJson();
-            if (result.Item1)
-            {
-                Debug.Log("Export RunPart successful");
-            }
-            else
-            {
-                Debug.LogError($"Export RunPard failed : {result.Item2}");
-            }
-        }
-
-        public void UpdateValues()
-        {
+            Export.onClick.AddListener(this.ExportJson);
+            Import.onClick.AddListener(this.ImportJson);
         }
 
         public void UpdateMaxSpeed(float val) => this.runPart.MaxSpeed = val;

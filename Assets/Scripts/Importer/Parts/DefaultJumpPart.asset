@@ -16,5 +16,6 @@ MonoBehaviour:
   GroundLayer: Ground
   JumpButtonName: Jump
   GravityScale: 9.8
-  MaxJumpCount: 2
+  FallingGravityScale: 3
+  MaxJumpCount: 1
   MaxJumpAirTime: 3

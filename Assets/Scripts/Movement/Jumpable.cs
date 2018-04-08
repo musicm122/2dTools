@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using Helpers;
 using Scripts.Importer.Parts;
+using Constants;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public partial class Jumpable : MonoBehaviour
@@ -23,6 +24,8 @@ public partial class Jumpable : MonoBehaviour
 
     private Rigidbody2D rb2d;
 
+    private float defaultGravityScale = DefaultValues.GravityScale;
+
     void Start()
     {
         ResetAirTimeCounter();
@@ -38,6 +41,15 @@ public partial class Jumpable : MonoBehaviour
     {
         JumpCheck();
         IsOnTheGround();
+        if (IsFalling() && Mathf.Approximately(rb2d.gravityScale, this.defaultGravityScale))
+        {
+            Debug.Log("Is Falling");
+            ApplyFallingGravityMultiplier();
+        }
+        else if (!IsFalling())
+        {
+            ResetGravityScale();
+        }
     }
 
     public void JumpCheck()
@@ -58,6 +70,16 @@ public partial class Jumpable : MonoBehaviour
         JumpCount = 0;
     }
 
+    void ApplyFallingGravityMultiplier()
+    {
+        this.rb2d.gravityScale = jumpData.FallingGravityScale;
+        Debug.Log($"Gravity Scale = {this.rb2d.gravityScale.ToString()}");
+    }
+
+    void ResetGravityScale()
+    {
+        this.rb2d.gravityScale = defaultGravityScale;
+    }
 
     public bool IsOnTheGround()
     {
@@ -114,6 +136,7 @@ public partial class Jumpable : MonoBehaviour
         isJumping = false;
     }
 
+    bool IsFalling() => rb2d.velocity.y < 0;
     bool IsJumpButtonPressed() => Input.GetButtonDown(jumpData.JumpButtonName);
     bool ShouldJump() => IsJumpButtonPressed() && JumpCount < jumpData.MaxJumpCount;
     bool ShouldExtendJump() => Input.GetButton(jumpData.JumpButtonName) && isJumping && jumpAirTime > 0;
