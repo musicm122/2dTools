@@ -18,6 +18,9 @@ public class FloatIncrementButton : MonoBehaviour
     [SerializeField]
     public float Value;
 
+    [SerializeField]
+    public float IncrementAmount = 1.0f;
+
     public Action<float> OnUpdate;
 
     void AddListeners()
@@ -32,18 +35,15 @@ public class FloatIncrementButton : MonoBehaviour
         Decrement.onClick.RemoveListener(DecrementValue);
     }
 
-
-
-
     void IncrementValue()
     {
-        Value++;
+        Value += IncrementAmount;
         UpdateValues();
     }
 
     void DecrementValue()
     {
-        Value--;
+        Value -= IncrementAmount;
         UpdateValues();
     }
 

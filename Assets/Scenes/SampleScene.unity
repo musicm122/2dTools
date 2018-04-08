@@ -550,7 +550,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00001552545, y: 0.000012062617}
+  m_AnchoredPosition: {x: -0.00001552545, y: -0.000016885211}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &62314057
@@ -2442,6 +2442,7 @@ MonoBehaviour:
   Increment: {fileID: 167025968}
   Decrement: {fileID: 1024088350}
   Value: 0
+  IncrementAmount: 50
 --- !u!1 &386687215
 GameObject:
   m_ObjectHideFlags: 0
@@ -5475,6 +5476,7 @@ MonoBehaviour:
   Increment: {fileID: 1985003356}
   Decrement: {fileID: 386687217}
   Value: 0
+  IncrementAmount: 1
 --- !u!1 &841932094
 GameObject:
   m_ObjectHideFlags: 0
@@ -5846,13 +5848,13 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 914904742}
   m_TextComponent: {fileID: 2124108202}
   m_Placeholder: {fileID: 182734222}
-  m_ContentType: 3
+  m_ContentType: 2
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 2
+  m_KeyboardType: 4
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 2
+  m_CharacterValidation: 1
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
@@ -6332,6 +6334,7 @@ MonoBehaviour:
   Increment: {fileID: 1508319175}
   Decrement: {fileID: 1729820276}
   Value: 0
+  IncrementAmount: 1
 --- !u!1 &991098344
 GameObject:
   m_ObjectHideFlags: 0
@@ -6676,7 +6679,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00001552545, y: -0.000016715596}
+  m_AnchoredPosition: {x: -0.00001552545, y: -0.000015865136}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1044443270
@@ -9982,7 +9985,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00001552545, y: 0.000012110908}
+  m_AnchoredPosition: {x: -0.00001552545, y: -0.00001683692}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1633913412
@@ -10896,6 +10899,7 @@ MonoBehaviour:
   Increment: {fileID: 1133219327}
   Decrement: {fileID: 1448780218}
   Value: 0
+  IncrementAmount: 1
 --- !u!1 &1969144477
 GameObject:
   m_ObjectHideFlags: 0
@@ -11141,6 +11145,7 @@ MonoBehaviour:
   Increment: {fileID: 99480618}
   Decrement: {fileID: 130102863}
   Value: 0
+  IncrementAmount: 1
 --- !u!224 &2029612363
 RectTransform:
   m_ObjectHideFlags: 0

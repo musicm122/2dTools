@@ -18,6 +18,9 @@ public class IntIncrementButton : MonoBehaviour
     [SerializeField]
     public int Value;
 
+    [SerializeField]
+    public int IncrementAmount = 1;
+
     public Action<int> OnUpdate;
 
     void AddListeners()
@@ -32,16 +35,15 @@ public class IntIncrementButton : MonoBehaviour
         Decrement.onClick.RemoveListener(DecrementValue);
     }
 
-
     void IncrementValue()
     {
-        Value++;
+        Value += IncrementAmount;
         UpdateValues();
     }
 
     void DecrementValue()
     {
-        Value--;
+        Value -= IncrementAmount;
         UpdateValues();
     }
 

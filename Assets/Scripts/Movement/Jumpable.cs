@@ -20,7 +20,7 @@ public partial class Jumpable : MonoBehaviour
 
     private float jumpAirTime = 0;
 
-    private int JumpCount = 0;
+    public int JumpCount;
 
     private Rigidbody2D rb2d;
 
@@ -40,7 +40,7 @@ public partial class Jumpable : MonoBehaviour
     void FixedUpdate()
     {
         JumpCheck();
-        IsOnTheGround();
+
         if (IsFalling() && Mathf.Approximately(rb2d.gravityScale, this.defaultGravityScale))
         {
             Debug.Log("Is Falling");
@@ -52,23 +52,7 @@ public partial class Jumpable : MonoBehaviour
         }
     }
 
-    public void JumpCheck()
-    {
-        if (ShouldJump())
-        {
-            Jump(jumpData.JumpForce);
-        }
-    }
 
-    void ResetAirTimeCounter()
-    {
-        jumpAirTime = jumpData.MaxJumpAirTime;
-    }
-
-    void ResetJumpCount()
-    {
-        JumpCount = 0;
-    }
 
     void ApplyFallingGravityMultiplier()
     {
@@ -76,14 +60,22 @@ public partial class Jumpable : MonoBehaviour
         Debug.Log($"Gravity Scale = {this.rb2d.gravityScale.ToString()}");
     }
 
-    void ResetGravityScale()
+    public void JumpCheck()
     {
-        this.rb2d.gravityScale = defaultGravityScale;
+        //Debug.Log($"JumpCount:{JumpCount} < jumpData.MaxJumpCount:{jumpData.MaxJumpCount}");
+        if (ShouldJump())
+        {
+            Jump(jumpData.JumpForce);
+        }
+        else
+        {
+            IsOnTheGround();
+        }
     }
 
     public bool IsOnTheGround()
     {
-        var isGrounded = PhysicsHelpers.LayerCollisionCheck(JumpCollider, jumpData.GroundLayer);
+        var isGrounded = PhysicsHelpers.LayerCollisionCheck(JumpCollider, jumpData.GroundLayer) && Mathf.Approximately(rb2d.velocity.y, 0);
         if (isGrounded)
         {
             OnGrounded();
@@ -101,16 +93,18 @@ public partial class Jumpable : MonoBehaviour
 
     void OnJumpInitated()
     {
-        isJumping = true;
+        //Debug.Log($"In OnJumpInitated Beginning JumpCount = {JumpCount}");
         JumpCount++;
+        isJumping = true;
+        //Debug.Log($"In OnJumpInitated Ending JumpCount = {JumpCount}");
     }
 
     public void Jump(float jumpForce, JumpSize jumpSize = JumpSize.Medium)
     {
-        OnJumpInitated();
         var force = GetJumpForce(jumpForce, jumpSize);
         Debug.Log($"{force.ToString()} : Jump Force");
         rb2d.AddForce(force);
+        OnJumpInitated();
     }
 
     IEnumerator JumpRoutine()
@@ -136,11 +130,18 @@ public partial class Jumpable : MonoBehaviour
         isJumping = false;
     }
 
-    bool IsFalling() => rb2d.velocity.y < 0;
+    void ResetAirTimeCounter() => jumpAirTime = jumpData.MaxJumpAirTime;
+    void ResetJumpCount() => JumpCount = 0;
+    void ResetGravityScale() => this.rb2d.gravityScale = defaultGravityScale;
+
+    public bool IsJumping() => isJumping;
+    bool IsFalling() => rb2d.velocity.y < 0 && !IsOnTheGround();
     bool IsJumpButtonPressed() => Input.GetButtonDown(jumpData.JumpButtonName);
+
+
     bool ShouldJump() => IsJumpButtonPressed() && JumpCount < jumpData.MaxJumpCount;
     bool ShouldExtendJump() => Input.GetButton(jumpData.JumpButtonName) && isJumping && jumpAirTime > 0;
     Vector2 GetJumpForce(float baseJumpForce, JumpSize size = JumpSize.Medium) => new Vector2(0f, baseJumpForce * (float)size);
-    public bool IsJumping() => isJumping;
+
 
 }
