@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1b54ce82c892462395f92cbb4a74a66, type: 3}
   m_Name: DemoRunPart
   m_EditorClassIdentifier: 
-  Gravity: 1.2
   ExportConfig: {fileID: 11400000, guid: 1e85c45212abd464381d95eb48ee76e4, type: 2}
-  MaxSpeed: 5
+  MaxSpeed: 4
+  MoveForce: 1
+  HasMomentum: 0

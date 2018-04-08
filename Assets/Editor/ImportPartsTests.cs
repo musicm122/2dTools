@@ -51,12 +51,10 @@ namespace AssemblyCSharpEditor.Assets.Editor
         [Test]
         public void CreateRunPartFromJson()
         {
-            var expectedGravity = 9.8f;
             var expectedMaxSpeed = 1f;
 
             var part = RunPartFactory.CreateRunPartWithGivenState(GetRunPartPath());
 
-            Assert.AreEqual(expectedGravity, part.Gravity, "RunPart Gravity Should Match");
             Assert.AreEqual(expectedMaxSpeed, part.MaxSpeed, "RunPart MaxSpeed Should Match");
         }
     }

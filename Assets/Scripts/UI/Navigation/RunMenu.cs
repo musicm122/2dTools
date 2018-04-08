@@ -8,32 +8,17 @@ using System.Xml.Serialization;
 
 namespace AssemblyCSharp.Assets.Scripts.UI.Navigation
 {
-    public class RunMenu : MonoBehaviour
+    public class RunMenu : MonoBehaviour, IPartMenu<RunPart>
     {
-
+        #region Inspector Fields
         [SerializeField]
         Movable MovableTarget;
 
         [SerializeField]
-        Button Import;
+        FloatIncrementButton MaxRunSpeed;
 
         [SerializeField]
-        Button Export;
-
-        [SerializeField]
-        Button Apply;
-
-        [SerializeField]
-        InputField MaxRunSpeed;
-
-        //[SerializeField]
-        //InputField MaxRunSpeed;
-
-        [SerializeField]
-        Button IncrementSpeed;
-
-        [SerializeField]
-        Button DecrementSpeed;
+        FloatIncrementButton MoveForce;
 
         [SerializeField]
         Toggle IsConstantSpeed;
@@ -44,96 +29,76 @@ namespace AssemblyCSharp.Assets.Scripts.UI.Navigation
         [SerializeField]
         Toggle HasForwardMomentum;
 
-        RunPart runPart;
+        [SerializeField]
+        public Button Import;
 
-        void AddValueChangedListenersToControls()
+        [SerializeField]
+        public Button Export;
+
+        #endregion Inspector Fields
+
+        private RunPart runPart;
+
+        public RunPart Part
         {
-            MaxRunSpeed.onValueChanged.AddListener((string val) => runPart.MaxSpeed = float.Parse(val));
-            //HasForwardMomentum.onValueChanged.AddListener((bool val) => { runPart.HasForwardMomentum = val });
-            //IsConstantSpeed.onValueChanged.AddListener((bool val) => { runPart.IsConstantSpeed = val });
-            //HoldToRun.onValueChanged.AddListener((bool val) => { runPart.HoldToRun = val });
+            get
+            {
+                return runPart;
+            }
         }
 
-        void AddClickListenersToButtons()
+        void OnEnable()
         {
-            //Apply.onClick.AddListener(ApplyChangesToPart);
-            Export.onClick.AddListener(ExportJson);
-            Import.onClick.AddListener(ImportJson);
-            IncrementSpeed.onClick.AddListener(IncrementSpeedValue);
-            DecrementSpeed.onClick.AddListener(DecrementSpeedValue);
+            runPart = this.MovableTarget.RunData;
+            SetInitBindings();
+            UpdateValues();
         }
 
-        private void OnDestroy()
+        void Start()
         {
-            //Apply.onClick.RemoveAllListeners();
+            SetInitBindings();
+            UpdateValues();
+        }
+
+        void OnDestroy()
+        {
+            MaxRunSpeed.OnUpdate -= UpdateMaxSpeed;
+            MoveForce.OnUpdate -= UpdateMoveForce;
             Export.onClick.RemoveAllListeners();
             Import.onClick.RemoveAllListeners();
-            MaxRunSpeed.onValueChanged.RemoveAllListeners();
             HasForwardMomentum.onValueChanged.RemoveAllListeners();
             IsConstantSpeed.onValueChanged.RemoveAllListeners();
         }
 
-        void UpdateValues()
-        {
-            MaxRunSpeed.text = runPart.MaxSpeed.ToString();
-        }
-
-        void IncrementSpeedValue()
-        {
-            this.runPart.MaxSpeed += +1.0f;
-        }
-
-        void DecrementSpeedValue()
-        {
-            this.runPart.MaxSpeed += -1.0f;
-        }
-
-        private void OnEnable()
-        {
-            runPart = this.MovableTarget.RunData;
-        }
-
-        private void Start()
+        void SetInitBindings()
         {
             runPart = this.MovableTarget.RunData;
             AddClickListenersToButtons();
             AddValueChangedListenersToControls();
         }
 
-        private void FixedUpdate()
+        void UpdateValues()
         {
-            UpdateValues();
+            MaxRunSpeed.Value = runPart.MaxSpeed;
+            MoveForce.Value = runPart.MoveForce;
         }
 
-        void ImportJson()
+        public void AddValueChangedListenersToControls()
         {
-            var result = UnityEditor.EditorUtility.OpenFilePanel("Json To Import", Constants.DefaultConfig.GetDefaultExportDir(), "json");
-            if (!String.IsNullOrWhiteSpace(result))
-            {
-                runPart.ImportFromJson(result);
-                UnityEditor.EditorUtility.DisplayDialog($"2d Tools Import Successful", $"File at {result} imported successfully.", "Okay");
-            }
+            MaxRunSpeed.OnUpdate += UpdateMaxSpeed;
+            MoveForce.OnUpdate += UpdateMoveForce;
+            HasForwardMomentum.onValueChanged.AddListener(UpdateHasMomentum);
         }
 
-        void ExportJson()
+        public void AddClickListenersToButtons()
         {
-            var result = this.runPart.ExportToJson();
-            if (result.Item1)
-            {
-                Debug.Log("Export RunPart successful");
-            }
-            else
-            {
-                Debug.LogError($"Export RunPard failed : {result.Item2}");
-            }
+            Export.onClick.AddListener(this.ExportJson);
+            Import.onClick.AddListener(this.ImportJson);
         }
 
-
-        void HasForwardMomentum_ValueChanged(bool value)
-        {
-            //update run part here
-        }
-
+        public void UpdateMaxSpeed(float val) => this.runPart.MaxSpeed = val;
+        public void UpdateMoveForce(float val) => this.runPart.MoveForce = val;
+        public void UpdateHasMomentum(bool val) => runPart.HasMomentum = val;
 
     }
 }

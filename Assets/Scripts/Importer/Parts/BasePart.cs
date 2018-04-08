@@ -12,11 +12,6 @@ namespace Scripts.Importer.Parts
     {
         public abstract BasePart CreateInstance();
 
-
-        [Header("Amount of Applied Gravity Per Fixed Update", order = 9)]
-        [SerializeField]
-        public float Gravity;
-
         [Header("Json Export Configuration", order = 10)]
         [SerializeField]
         public ExportConfiguration ExportConfig;

@@ -611,12 +611,13 @@ PlayerSettings:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
   cloudServicesEnabled:
-    Collab: 0
+    Build: 1
+    Collab: 1
     UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 3
-  cloudProjectId: 2335d200-0d47-498c-b092-b5dd67d02183
-  projectName: Toolkit2d
+  cloudProjectId: 664ee8e9-5d3f-4bdc-9aff-907b31931524
+  projectName: 2dTools
   organizationId: musicm122
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
