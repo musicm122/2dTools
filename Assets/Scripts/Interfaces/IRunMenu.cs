@@ -6,6 +6,5 @@
         void AddValueChangedListenersToControls();
         void ExportJson();
         void ImportJson();
-        void UpdateValues();
     }
 }

@@ -24,6 +24,13 @@ namespace AssemblyCSharp.Assets.Scripts.UI.Navigation
         Button Apply;
 
         [SerializeField]
+        IncrementButton MaxRunSpeed;
+
+        [SerializeField]
+        IncrementButton MoveForce;
+
+        /*
+        [SerializeField]
         InputField MaxRunSpeed;
 
         [SerializeField]
@@ -31,6 +38,7 @@ namespace AssemblyCSharp.Assets.Scripts.UI.Navigation
 
         [SerializeField]
         Button DecrementSpeed;
+        */
 
         [SerializeField]
         Toggle IsConstantSpeed;
@@ -47,45 +55,27 @@ namespace AssemblyCSharp.Assets.Scripts.UI.Navigation
 
         public void AddValueChangedListenersToControls()
         {
-            MaxRunSpeed.onValueChanged.AddListener((string val) => runPart.MaxSpeed = float.Parse(val));
-            //HasForwardMomentum.onValueChanged.AddListener((bool val) => { runPart.HasForwardMomentum = val });
-            //IsConstantSpeed.onValueChanged.AddListener((bool val) => { runPart.IsConstantSpeed = val });
-            //HoldToRun.onValueChanged.AddListener((bool val) => { runPart.HoldToRun = val });
+            MaxRunSpeed.OnUpdate += UpdateMaxSpeed;
+            MoveForce.OnUpdate += UpdateMoveForce;
+            HasForwardMomentum.onValueChanged.AddListener(UpdateHasMomentum);
         }
 
         public void AddClickListenersToButtons()
         {
-            //Apply.onClick.AddListener(ApplyChangesToPart);
             Export.onClick.AddListener(ExportJson);
             Import.onClick.AddListener(ImportJson);
-            IncrementSpeed.onClick.AddListener(IncrementSpeedValue);
-            DecrementSpeed.onClick.AddListener(DecrementSpeedValue);
         }
 
         void OnDestroy()
         {
-            //Apply.onClick.RemoveAllListeners();
+            MaxRunSpeed.OnUpdate -= UpdateMaxSpeed;
+            MoveForce.OnUpdate -= UpdateMoveForce;
             Export.onClick.RemoveAllListeners();
             Import.onClick.RemoveAllListeners();
-            MaxRunSpeed.onValueChanged.RemoveAllListeners();
             HasForwardMomentum.onValueChanged.RemoveAllListeners();
             IsConstantSpeed.onValueChanged.RemoveAllListeners();
         }
 
-        public void UpdateValues()
-        {
-            MaxRunSpeed.text = runPart.MaxSpeed.ToString();
-        }
-
-        private void IncrementSpeedValue()
-        {
-            this.runPart.MaxSpeed += +1.0f;
-        }
-
-        private void DecrementSpeedValue()
-        {
-            this.runPart.MaxSpeed += -1.0f;
-        }
 
         void OnEnable()
         {
@@ -95,11 +85,13 @@ namespace AssemblyCSharp.Assets.Scripts.UI.Navigation
         void Start()
         {
             runPart = this.MovableTarget.RunData;
+            MaxRunSpeed.Value = runPart.MaxSpeed;
+            MoveForce.Value = runPart.MoveForce;
             AddClickListenersToButtons();
             AddValueChangedListenersToControls();
         }
 
-        private void FixedUpdate()
+        void FixedUpdate()
         {
             UpdateValues();
         }
@@ -127,9 +119,13 @@ namespace AssemblyCSharp.Assets.Scripts.UI.Navigation
             }
         }
 
-        void HasForwardMomentum_ValueChanged(bool value)
+        public void UpdateValues()
         {
-            //update run part here
         }
+
+        public void UpdateMaxSpeed(float val) => this.runPart.MaxSpeed = val;
+        public void UpdateMoveForce(float val) => this.runPart.MoveForce = val;
+        public void UpdateHasMomentum(bool val) => runPart.HasMomentum = val;
+
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Enums;
 using Scripts.Importer.Parts;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Movable : MonoBehaviour, IMovable
@@ -37,7 +38,6 @@ public class Movable : MonoBehaviour, IMovable
             rb2d.velocity = new Vector2(Mathf.Sign(rb2d.velocity.x) * RunData.MaxSpeed, rb2d.velocity.y);
         }
         */
-        Debug.Log($"Move : Current Velocity = {rb2d.velocity.ToString()}");
     }
 
     void ApplyAcceleration(float horizontalInputVal)
@@ -46,12 +46,14 @@ public class Movable : MonoBehaviour, IMovable
         {
             var applyForce = Vector2.right * horizontalInputVal * RunData.MoveForce;
             rb2d.AddForce(applyForce);
-            Debug.Log($"ApplyAcceleration Apply Formula: ${Vector2.right.ToString()}  * {horizontalInputVal.ToString()} * {RunData.MoveForce.ToString()}; = {applyForce}");
         }
     }
 
     void ApplyStaticSpeed(float horizontalInputVal)
     {
+        //if (horizontalInputVal * rb2d.velocity.x < RunData.MaxSpeed)
+        //horizontalInputVal.MustNotBeApproximatelyEqual(0f)
+        //if (Mathf.Approximately(horizontalInputVal, 0f))
         if (horizontalInputVal * rb2d.velocity.x < RunData.MaxSpeed)
         {
             var currentVelocity = rb2d.velocity;

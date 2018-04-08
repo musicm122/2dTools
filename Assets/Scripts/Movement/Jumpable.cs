@@ -15,13 +15,11 @@ public partial class Jumpable : MonoBehaviour
     [SerializeField]
     public float LongJumpTime = 0.03f;
 
-    public bool isJumping = false;
+    private bool isJumping = false;
 
-    public float MaxJumpAirTime = 3f;
-    public int MaxJumpCount = 2;
+    private float jumpAirTime = 0;
 
-    public float jumpAirTime = 0;
-    public int JumpCount = 0;
+    private int JumpCount = 0;
 
     private Rigidbody2D rb2d;
 
@@ -48,30 +46,17 @@ public partial class Jumpable : MonoBehaviour
         {
             Jump(jumpData.JumpForce);
         }
-
-        /*
-        if (ShouldExtendJump())
-        {
-            Debug.Log("Extending Jump!");
-            Jump(jumpData.JumpForce);
-            jumpAirTimeCounter -= Time.deltaTime;
-        }
-        */
     }
 
     void ResetAirTimeCounter()
     {
-        jumpAirTime = MaxJumpAirTime;
+        jumpAirTime = jumpData.MaxJumpAirTime;
     }
 
     void ResetJumpCount()
     {
         JumpCount = 0;
     }
-
-    bool IsJumpButtonPressed() => Input.GetButtonDown(jumpData.JumpButtonName);
-    bool ShouldJump() => IsJumpButtonPressed() && JumpCount < MaxJumpCount;
-    bool ShouldExtendJump() => Input.GetButton(jumpData.JumpButtonName) && isJumping && jumpAirTime > 0;
 
 
     public bool IsOnTheGround()
@@ -98,12 +83,6 @@ public partial class Jumpable : MonoBehaviour
         JumpCount++;
     }
 
-    Vector2 GetJumpForce(float baseJumpForce, JumpSize size = JumpSize.Medium)
-    {
-        var multiplier = (float)size;
-        return new Vector2(0f, baseJumpForce * multiplier);
-    }
-
     public void Jump(float jumpForce, JumpSize jumpSize = JumpSize.Medium)
     {
         OnJumpInitated();
@@ -117,7 +96,7 @@ public partial class Jumpable : MonoBehaviour
         rb2d.velocity = Vector2.zero;
         float timer = 0;
 
-        while (IsJumpButtonPressed() && timer < MaxJumpAirTime)
+        while (IsJumpButtonPressed() && timer < jumpData.MaxJumpAirTime)
         {
             //Calculate how far through the jump we are as a percentage
             //apply the full jump force on the first frame, then apply less force
@@ -134,5 +113,11 @@ public partial class Jumpable : MonoBehaviour
 
         isJumping = false;
     }
+
+    bool IsJumpButtonPressed() => Input.GetButtonDown(jumpData.JumpButtonName);
+    bool ShouldJump() => IsJumpButtonPressed() && JumpCount < jumpData.MaxJumpCount;
+    bool ShouldExtendJump() => Input.GetButton(jumpData.JumpButtonName) && isJumping && jumpAirTime > 0;
+    Vector2 GetJumpForce(float baseJumpForce, JumpSize size = JumpSize.Medium) => new Vector2(0f, baseJumpForce * (float)size);
+    public bool IsJumping() => isJumping;
 
 }

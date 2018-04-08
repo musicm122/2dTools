@@ -27,6 +27,13 @@ namespace Scripts.Importer.Parts
         [SerializeField]
         public float GravityScale = 1f;
 
+        [SerializeField]
+        public int MaxJumpCount = 2;
+
+        [SerializeField]
+        public float MaxJumpAirTime = 3f;
+
+
         public override BasePart CreateInstance()
         {
             return CreateInstance<JumpPart>();

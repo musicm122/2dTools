@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Name: DemoRunPart
   m_EditorClassIdentifier: 
   ExportConfig: {fileID: 11400000, guid: 1e85c45212abd464381d95eb48ee76e4, type: 2}
-  MaxSpeed: 2
-  MoveForce: 0.1
+  MaxSpeed: 4
+  MoveForce: 1
   HasMomentum: 0
