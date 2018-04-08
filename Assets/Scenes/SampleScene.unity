@@ -550,7 +550,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00001552545, y: -0.000016885211}
+  m_AnchoredPosition: {x: -0.00001552545, y: -0.00003601682}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &62314057
@@ -1055,7 +1055,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Jump Force
+  m_Text: Falling Gravity Scale
 --- !u!222 &108312524
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6679,7 +6679,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00001552545, y: -0.000015865136}
+  m_AnchoredPosition: {x: -0.00001552545, y: -0.00003601225}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1044443270
@@ -6696,7 +6696,7 @@ MonoBehaviour:
   JumpableTarget: {fileID: 1175667011}
   JumpForce: {fileID: 385309295}
   MaxJumpCount: {fileID: 822386448}
-  MaxAirTime: {fileID: 1953677476}
+  FallingGravityScale: {fileID: 1953677476}
   Import: {fileID: 1154170527}
   Export: {fileID: 610376851}
 --- !u!1 &1050664011
@@ -7039,7 +7039,7 @@ GameObject:
   - component: {fileID: 1133219328}
   - component: {fileID: 1133219327}
   m_Layer: 5
-  m_Name: Add Air Time
+  m_Name: Add Gravity Scale
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8507,7 +8507,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1413935689
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8683,7 +8683,7 @@ GameObject:
   - component: {fileID: 1448780219}
   - component: {fileID: 1448780218}
   m_Layer: 5
-  m_Name: Remove Air Time
+  m_Name: Remove Gravity Scale
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9985,7 +9985,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00001552545, y: -0.00001683692}
+  m_AnchoredPosition: {x: -0.00001552545, y: -0.00003596853}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1633913412
@@ -10374,7 +10374,7 @@ GameObject:
   - component: {fileID: 1780833860}
   - component: {fileID: 1780833859}
   m_Layer: 5
-  m_Name: IncrementAirTimeTextBox
+  m_Name: IncrementFallingGravityScaleTextBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10877,7 +10877,7 @@ GameObject:
   - component: {fileID: 2029612363}
   - component: {fileID: 1953677476}
   m_Layer: 5
-  m_Name: IncrementAirTime
+  m_Name: IncrementFallingGravity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10959,7 +10959,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 0
@@ -10970,7 +10970,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Increment Jump Force
+  m_Text: Falling Gravity Scale
 --- !u!222 &1969144480
 CanvasRenderer:
   m_ObjectHideFlags: 0

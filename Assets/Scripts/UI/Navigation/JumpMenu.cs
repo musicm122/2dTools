@@ -22,7 +22,7 @@ namespace AssemblyCSharp.Assets.Scripts.UI.Navigation
         IntIncrementButton MaxJumpCount;
 
         [SerializeField]
-        FloatIncrementButton MaxAirTime;
+        FloatIncrementButton FallingGravityScale;
 
         [SerializeField]
         public Button Import;
@@ -56,7 +56,7 @@ namespace AssemblyCSharp.Assets.Scripts.UI.Navigation
         {
             JumpForce.OnUpdate -= UpdateJumpForce;
             MaxJumpCount.OnUpdate -= UpdateMaxJumpCount;
-            MaxAirTime.OnUpdate -= UpdateMaxAirTime;
+            FallingGravityScale.OnUpdate -= UpdateFallingGravityScale;
             Export.onClick.RemoveAllListeners();
             Import.onClick.RemoveAllListeners();
         }
@@ -73,7 +73,7 @@ namespace AssemblyCSharp.Assets.Scripts.UI.Navigation
         {
             this.JumpForce.Value = jumpPart.JumpForce;
             this.MaxJumpCount.Value = jumpPart.MaxJumpCount;
-            this.MaxAirTime.Value = jumpPart.MaxJumpAirTime;
+            this.FallingGravityScale.Value = jumpPart.FallingGravityScale;
         }
 
         public void AddClickListenersToButtons()
@@ -87,11 +87,11 @@ namespace AssemblyCSharp.Assets.Scripts.UI.Navigation
         {
             JumpForce.OnUpdate += UpdateJumpForce;
             MaxJumpCount.OnUpdate += UpdateMaxJumpCount;
-            MaxAirTime.OnUpdate += UpdateMaxAirTime;
+            FallingGravityScale.OnUpdate += UpdateFallingGravityScale;
         }
 
         public void UpdateJumpForce(float val) => jumpPart.JumpForce = val;
-        public void UpdateMaxAirTime(float val) => jumpPart.MaxJumpAirTime = val;
+        public void UpdateFallingGravityScale(float val) => jumpPart.FallingGravityScale = val;
         public void UpdateMaxJumpCount(int val) => jumpPart.MaxJumpCount = val;
 
     }
